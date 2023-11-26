@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ladder
+  - imPassablePlatform
+  - PassablePlatform
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - UI
   - Platform
   - Ladder
-  - 
+  - Enemy
   - 
   - 
   - 
