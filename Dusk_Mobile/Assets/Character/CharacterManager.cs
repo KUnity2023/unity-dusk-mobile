@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class CharacterManager : MonoBehaviour {
 
     [SerializeField] float      m_speed = 4.0f;
@@ -26,6 +26,10 @@ public class CharacterManager : MonoBehaviour {
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
 
+    private float currentTime;
+    public float coolTime = 0.5f;
+    public Transform pos;
+    public Vector2 boxSize;
 
     // Use this for initialization
     void Start ()
@@ -109,6 +113,13 @@ public class CharacterManager : MonoBehaviour {
         //Attack
         else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
+            // 충돌 감지 point = 박스 생성 위치, size = 박스 사이즈
+            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position,boxSize,0);
+            foreach(Collider2D collider in collider2Ds)
+            {
+                Debug.Log(collider.tag);
+            }
+
             m_currentAttack++;
 
             // Loop back to one after third attack
@@ -173,6 +184,11 @@ public class CharacterManager : MonoBehaviour {
         }
     }
 
+
+    private void OnDrawGizmos(){
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(pos.position, boxSize);
+    }
     // Animation Events
     // Called in slide animation.
     void AE_SlideDust()
