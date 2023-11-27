@@ -11,6 +11,7 @@ public class CharacterManager : MonoBehaviour {
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
+    private GameObject m_atkHitbox;
     private Sensor_HeroKnight   m_groundSensor;
     private Sensor_HeroKnight   m_wallSensorR1;
     private Sensor_HeroKnight   m_wallSensorR2;
@@ -41,6 +42,7 @@ public class CharacterManager : MonoBehaviour {
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
+        //m_atkHitbox = transform.Find("melee").GetComponent<GameObject>();
     }
 
     // Update is called once per frame
@@ -79,12 +81,14 @@ public class CharacterManager : MonoBehaviour {
         {
             GetComponent<SpriteRenderer>().flipX = false;
             m_facingDirection = 1;
+            pos.position = new Vector2(transform.position.x+1,transform.position.y+0.8f);
         }
             
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
+            pos.position = new Vector2(transform.position.x-1,transform.position.y+0.8f);
         }
 
         // Move
