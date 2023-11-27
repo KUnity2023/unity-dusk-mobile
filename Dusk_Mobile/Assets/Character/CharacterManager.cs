@@ -30,6 +30,7 @@ public class CharacterManager : MonoBehaviour {
     private float currentTime;
     public float coolTime = 0.5f;
     public Transform pos;
+    public bl_Joystick js;
     public Vector2 boxSize;
 
     // Use this for initialization
@@ -48,6 +49,8 @@ public class CharacterManager : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        Vector3 dir = new Vector3(js.Horizontal, js.Vertical, 0);
+        dir.Normalize();
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -74,8 +77,9 @@ public class CharacterManager : MonoBehaviour {
         }
 
         // -- Handle input and movement --
-        float inputX = Input.GetAxis("Horizontal");
-
+        //float inputX = Input.GetAxis("Horizontal"); //PC
+        float inputX = dir.x;
+        float inputY = dir.y;
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
