@@ -34,6 +34,7 @@ public class Search_Target : StateMachineBehaviour
       }else{
          animator.SetBool("isReady",true);
          animator.SetTrigger("Teleport");
+         currentCooldown = cooldown;
       }
       
       Vector2 target = new Vector2(player.position.x, rb.position.y);
@@ -54,6 +55,5 @@ public class Search_Target : StateMachineBehaviour
       animator.ResetTrigger("Attack");
       animator.ResetTrigger("Teleport");
       animator.SetBool("isReady",false);
-      currentCooldown = cooldown;
    }
 }
