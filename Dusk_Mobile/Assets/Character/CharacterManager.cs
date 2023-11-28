@@ -12,6 +12,7 @@ public class CharacterManager : MonoBehaviour {
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
     private GameObject          m_atkHitbox;
+    private SpriteRenderer      m_spriteRenderer;
     private Sensor_HeroKnight   m_groundSensor;
     private Sensor_HeroKnight   m_wallSensorR1;
     private Sensor_HeroKnight   m_wallSensorR2;
@@ -41,6 +42,7 @@ public class CharacterManager : MonoBehaviour {
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
         myStats = GetComponent<CharacterStats>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_HeroKnight>();
@@ -221,6 +223,24 @@ public class CharacterManager : MonoBehaviour {
     }
     // Animation Events
     // Called in slide animation.
+
+    public void OnDamaged(Vector2 targetPos){
+        //레이어 변화
+        gameObject.layer = 10;
+        //피격시 색 변화
+        m_spriteRenderer.color = new Color(1, 1, 1, 0.4f);// 4번째 인자는 투명도
+        //피격시 튕김리액션 
+        int dirc = transform.position.x - targetPos.x  > 0 ? 1 : -1;
+        m_body2d.AddForce(new Vector2(dirc, 1)*4, ForceMode2D.Impulse);
+        Invoke("OffDamaged", 2);
+    }
+
+    void OffDamaged()
+    {
+        gameObject.layer = 3;
+        m_spriteRenderer.color = new Color(1, 1, 1, 1);
+    }
+
     void AE_SlideDust()
     {
         Vector3 spawnPosition;

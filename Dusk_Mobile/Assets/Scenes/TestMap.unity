@@ -789,7 +789,7 @@ MonoBehaviour:
   spellDamage: 20
   attackOffset: {x: -1, y: 0.35, z: 0}
   melee: {fileID: 1715948841}
-  boxSize: {x: 2.3, y: 1.5}
+  boxSize: {x: 2.3, y: 1.4}
   attackRange: 1.3
   mapSize: 20
   mapoffset: 0

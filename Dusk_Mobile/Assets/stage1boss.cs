@@ -20,6 +20,8 @@ public class stage1boss : MonoBehaviour
     private Animator ani;
     public void Start() {
         ani = GetComponent<Animator>();
+        boxSize = new Vector2(2.3f,1.5f);
+        melee.localPosition = new Vector3(-0.05f,-0.3f,0f);
     }
     public void LookAtPlayer(){
         Vector3 flipped = transform.localScale;
@@ -38,9 +40,12 @@ public class stage1boss : MonoBehaviour
         }
     }
     public void Attack(){
+        boxSize = new Vector2(2.3f,1.5f);
+        melee.localPosition = new Vector3(-0.05f,-0.3f,0f);
         Collider2D colInfo = Physics2D.OverlapBox(melee.position,boxSize,0,attackMask);
         if(colInfo != null){
             colInfo.GetComponent<CharacterStats>().TakeDamage(attackDamage);
+            colInfo.GetComponent<CharacterManager>().OnDamaged(transform.position);
             //맞은 대상의 레이어를 잠시 바꾸고 일정시간 데미지가 안들어가도록
 
         }
@@ -49,6 +54,19 @@ public class stage1boss : MonoBehaviour
         transform.position = new Vector3(Random.Range(-7,7),transform.position.y,transform.position.z);
         LookAtPlayer();
         ani.SetFloat("distance",Vector2.Distance(transform.position,player.position));
+    }
+    public void RangeAttack(){
+        boxSize = new Vector2(5,4);
+        melee.localPosition = new Vector3(-0.15f,0,0);
+        Collider2D colInfo = Physics2D.OverlapBox(melee.position,boxSize,0,attackMask);
+        if(colInfo != null){
+            colInfo.GetComponent<CharacterStats>().TakeDamage(attackDamage);
+            colInfo.GetComponent<CharacterManager>().OnDamaged(transform.position);
+            //맞은 대상의 레이어를 잠시 바꾸고 일정시간 데미지가 안들어가도록
+
+        }
+        boxSize = new Vector2(2.3f,1.5f);
+        melee.localPosition = new Vector3(-0.05f,-0.3f,0f);
     }
     enum patterns{
         RangeAttack,
