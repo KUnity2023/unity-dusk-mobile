@@ -11,7 +11,7 @@ public class CharacterManager : MonoBehaviour {
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
-    private GameObject m_atkHitbox;
+    private GameObject          m_atkHitbox;
     private Sensor_HeroKnight   m_groundSensor;
     private Sensor_HeroKnight   m_wallSensorR1;
     private Sensor_HeroKnight   m_wallSensorR2;
@@ -78,11 +78,12 @@ public class CharacterManager : MonoBehaviour {
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
         }
-
+        // input mode
         // -- Handle input and movement --
-        //float inputX = Input.GetAxis("Horizontal"); //PC
-        float inputX = dir.x;
-        float inputY = dir.y;
+        float inputX = Input.GetAxis("Horizontal"); //PC
+        // float inputX = dir.x; //Mobile
+        float inputY = Input.GetAxis("Vertical"); //PC
+        //float inputY = dir.y; //Mobile
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
