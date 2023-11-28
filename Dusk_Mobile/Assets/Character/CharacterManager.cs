@@ -37,6 +37,11 @@ public class CharacterManager : MonoBehaviour {
     public CharacterStats myStats;
     public LayerMask attackMask;
 
+    public bool inputJump;
+    public bool inputAttack;
+    public bool inputGuard;
+    public bool inputRoll;
+
     // Use this for initialization
     void Start ()
     {
@@ -50,6 +55,8 @@ public class CharacterManager : MonoBehaviour {
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
         //m_atkHitbox = transform.Find("melee").GetComponent<GameObject>();
+        UIBtnManager ui = GameObject.Find("ButtonUI").GetComponent<UIBtnManager>();
+        ui.Init();
     }
 
     // Update is called once per frame
@@ -84,10 +91,10 @@ public class CharacterManager : MonoBehaviour {
         }
         // input mode
         // -- Handle input and movement --
-        float inputX = Input.GetAxis("Horizontal"); //PC
-        // float inputX = dir.x; //Mobile
-        float inputY = Input.GetAxis("Vertical"); //PC
-        //float inputY = dir.y; //Mobile
+        //float inputX = Input.GetAxis("Horizontal"); //PC
+        float inputX = dir.x; //Mobile
+        //float inputY = Input.GetAxis("Vertical"); //PC
+        float inputY = dir.y; //Mobile
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
@@ -128,7 +135,8 @@ public class CharacterManager : MonoBehaviour {
             m_animator.SetTrigger("Hurt");
         */
         //Attack
-        if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        //if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        if(inputAttack && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             // 충돌 감지 point = 박스 생성 위치, size = 박스 사이즈
             Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position,boxSize,0,attackMask);
@@ -157,21 +165,23 @@ public class CharacterManager : MonoBehaviour {
         }
 
         // Block
-        else if (Input.GetMouseButtonDown(1) && !m_rolling)
+        //else if (Input.GetMouseButtonDown(1) && !m_rolling)
+        else if (inputGuard && !m_rolling)
         {
             m_animator.SetTrigger("Block");
             blocking = true; 
             m_animator.SetBool("IdleBlock", true);
         }
 
-        else if (Input.GetMouseButtonUp(1)){
+        else if (!inputGuard){
             blocking = false; 
             m_animator.SetBool("IdleBlock", false);
         }
             
 
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
+        //else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
+        else if (inputRoll && !m_rolling && !m_isWallSliding)
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
@@ -180,7 +190,8 @@ public class CharacterManager : MonoBehaviour {
             
 
         //Jump
-        else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
+        //else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
+        else if (inputJump && m_grounded && !m_rolling)
         {
             m_animator.SetTrigger("Jump");
             m_grounded = false;
