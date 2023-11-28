@@ -16,5 +16,6 @@ public class CharacterStats : MonoBehaviour
     public void TakeDamage(int damage)
     {
         curHealth -= damage;
+        Debug.Log(curHealth);
     }
 }

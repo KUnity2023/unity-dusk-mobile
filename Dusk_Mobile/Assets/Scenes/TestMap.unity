@@ -479,6 +479,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.01}
   m_EdgeRadius: 0
+--- !u!1 &1715948840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1715948841}
+  m_Layer: 0
+  m_Name: melee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1715948841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715948840}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033954211}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1822023117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,7 +572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5237001865595175407, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
       propertyPath: m_Name
-      value: Bringer Of Death
+      value: StageBoss
       objectReference: {fileID: 0}
     - target: {fileID: 5237001865595175407, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
       propertyPath: m_Layer
@@ -581,6 +612,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1161247745137148858, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1618867334}
+    - targetCorrespondingSourceObject: {fileID: 1161247745137148858, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1715948841}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5237001865595175407, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
       insertIndex: -1
@@ -727,6 +761,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7894656761a5e4581d9cff30eb1c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1922421242}
+  isFlipped: 0
+  attackDamage: 10
+  spellDamage: 20
+  attackOffset: {x: -1.5, y: 0.35, z: 0}
+  melee: {fileID: 1715948841}
+  boxSize: {x: 2, y: 1.5}
+  attackRange: 1.2
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &2033954208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,10 +817,10 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 2
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 5
+  m_Constraints: 0
 --- !u!114 &2114772563 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 385265791895795222, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
@@ -1012,7 +1057,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 24042231761528490, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 603351401998475155, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_Name
@@ -1032,7 +1077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466084119262615809, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2385724003287136409, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_SortingOrder
@@ -1088,15 +1133,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7835412719837356547, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8113299510917997021, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9023191015138043543, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
