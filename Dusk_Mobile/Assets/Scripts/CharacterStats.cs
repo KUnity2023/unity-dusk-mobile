@@ -17,5 +17,6 @@ public class CharacterStats : MonoBehaviour
     {
         curHealth -= damage;
         Debug.Log(curHealth);
+        GetComponent<Animator>().SetTrigger("Hurt");
     }
 }

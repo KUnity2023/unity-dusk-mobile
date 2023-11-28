@@ -44,5 +44,6 @@ public class randomPattern : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger(newPattern);
+        animator.SetBool("patternOn",false);
     }
 }

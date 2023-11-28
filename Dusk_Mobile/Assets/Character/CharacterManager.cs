@@ -29,6 +29,7 @@ public class CharacterManager : MonoBehaviour {
 
     private float currentTime;
     public float atkCdw = 0f;
+    public bool blocking = false;
     public Transform pos;
     public bl_Joystick js;
     public Vector2 boxSize;
@@ -131,9 +132,9 @@ public class CharacterManager : MonoBehaviour {
             Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position,boxSize,0,attackMask);
             foreach(Collider2D collider in collider2Ds)
             {
-                Debug.Log(collider.tag);
                 CharacterStats enemyStats = collider.GetComponent<CharacterStats>();
                 enemyStats.TakeDamage(myStats.damage.GetStat());
+                //맞은 대상의 레이어를 잠시 바꾸고 일정시간 데미지가 안들어가도록
             }
 
             m_currentAttack++;
@@ -157,11 +158,15 @@ public class CharacterManager : MonoBehaviour {
         else if (Input.GetMouseButtonDown(1) && !m_rolling)
         {
             m_animator.SetTrigger("Block");
+            blocking = true; 
             m_animator.SetBool("IdleBlock", true);
         }
 
-        else if (Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(1)){
+            blocking = false; 
             m_animator.SetBool("IdleBlock", false);
+        }
+            
 
         // Roll
         else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)

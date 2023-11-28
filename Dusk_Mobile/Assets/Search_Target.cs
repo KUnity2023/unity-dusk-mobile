@@ -14,7 +14,8 @@ public class Search_Target : StateMachineBehaviour
    public float currentCooldown = 0f;
    public float attackRange = 3f;
    stage1boss boss;
-   //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+   //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state\
+   
    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
       //player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -23,20 +24,25 @@ public class Search_Target : StateMachineBehaviour
       rb = animator.GetComponent<Rigidbody2D>();
       bossStat = animator.GetComponent<CharacterStats>();
       boss = animator.GetComponent<stage1boss>();
+      //StartCoroutine(LookPlayer());
    }
+   // IEnumerator LookPlayer(){
+   //    yield return new WaitForSeconds(1.0f);
+   //    boss.LookAtPlayer();
+   // }
 
    //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
-      boss.LookAtPlayer();
+      //boss.LookAtPlayer();
       if(currentCooldown > 0)
       {
          currentCooldown -= Time.deltaTime;
       }
       if(currentCooldown <= 0)
       {
-         animator.SetBool("isReady",true);
-         animator.SetTrigger("Teleport");
+         animator.SetBool("patternOn",true);
+         //animator.SetTrigger("pattern");
          currentCooldown = cooldown;
       }
       
@@ -45,7 +51,9 @@ public class Search_Target : StateMachineBehaviour
       Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
       rb.MovePosition(newPos);
 
-      if(Vector2.Distance(player.position, rb.position) <= attackRange && currentCooldown > 0){
+      if(Vector2.Distance(player.position, rb.position) > attackRange && currentCooldown > 0){
+         animator.SetTrigger("Teleport");
+      }else if(Vector2.Distance(player.position, rb.position) <= attackRange && currentCooldown > 0){
          animator.SetTrigger("Attack");
       }
       //Move by teleport
