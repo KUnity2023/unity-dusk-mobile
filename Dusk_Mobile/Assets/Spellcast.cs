@@ -6,7 +6,7 @@ public class Spellcast : MonoBehaviour
 {
     // Start is called before the first frame update
     private void Start() {
-        transform.position = new Vector3(Random.Range(-6,6),-1.23f,0);
+        
     }
     public void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")){
