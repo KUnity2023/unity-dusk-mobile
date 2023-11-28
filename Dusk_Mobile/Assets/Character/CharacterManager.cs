@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class CharacterManager : MonoBehaviour {
 
     [SerializeField] float      m_speed = 4.0f;
@@ -11,6 +11,7 @@ public class CharacterManager : MonoBehaviour {
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
+    private GameObject m_atkHitbox;
     private Sensor_HeroKnight   m_groundSensor;
     private Sensor_HeroKnight   m_wallSensorR1;
     private Sensor_HeroKnight   m_wallSensorR2;
@@ -26,25 +27,36 @@ public class CharacterManager : MonoBehaviour {
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
 
+    private float currentTime;
+    public float atkCdw = 0f;
+    public Transform pos;
+    public bl_Joystick js;
+    public Vector2 boxSize;
+    public CharacterStats myStats;
 
     // Use this for initialization
     void Start ()
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
+        myStats = GetComponent<CharacterStats>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
+        //m_atkHitbox = transform.Find("melee").GetComponent<GameObject>();
     }
 
     // Update is called once per frame
     void Update ()
     {
+        
+        Vector3 dir = new Vector3(js.Horizontal, js.Vertical, 0);
+        dir.Normalize();
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
-
+        atkCdw -= Time.deltaTime;
         // Increase timer that checks roll duration
         if(m_rolling)
             m_rollCurrentTime += Time.deltaTime;
@@ -68,19 +80,22 @@ public class CharacterManager : MonoBehaviour {
         }
 
         // -- Handle input and movement --
-        float inputX = Input.GetAxis("Horizontal");
-
+        //float inputX = Input.GetAxis("Horizontal"); //PC
+        float inputX = dir.x;
+        float inputY = dir.y;
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
             m_facingDirection = 1;
+            pos.position = new Vector2(transform.position.x+1,transform.position.y+0.8f);
         }
             
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
+            pos.position = new Vector2(transform.position.x-1,transform.position.y+0.8f);
         }
 
         // Move
@@ -96,6 +111,7 @@ public class CharacterManager : MonoBehaviour {
         m_animator.SetBool("WallSlide", m_isWallSliding);
 
         //Death
+        /*
         if (Input.GetKeyDown("e") && !m_rolling)
         {
             m_animator.SetBool("noBlood", m_noBlood);
@@ -105,10 +121,17 @@ public class CharacterManager : MonoBehaviour {
         //Hurt
         else if (Input.GetKeyDown("q") && !m_rolling)
             m_animator.SetTrigger("Hurt");
-
+        */
         //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
+            // 충돌 감지 point = 박스 생성 위치, size = 박스 사이즈
+            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position,boxSize,0);
+            foreach(Collider2D collider in collider2Ds)
+            {
+                Debug.Log(collider.tag);
+            }
+
             m_currentAttack++;
 
             // Loop back to one after third attack
@@ -173,6 +196,20 @@ public class CharacterManager : MonoBehaviour {
         }
     }
 
+    //Events
+    public void Attack(CharacterStats targetStats){
+        float atkSpd = myStats.atkSpd.GetStat() * 0.1f;
+        if (atkCdw <= 0){
+            targetStats.TakeDamage(myStats.damage.GetStat());
+            atkCdw = 1f / atkSpd;
+        }
+    }
+
+    //for debug
+    private void OnDrawGizmos(){
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(pos.position, boxSize);
+    }
     // Animation Events
     // Called in slide animation.
     void AE_SlideDust()
