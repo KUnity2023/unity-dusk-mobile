@@ -14,6 +14,8 @@ public class stage1boss : MonoBehaviour
     public Transform melee;
     public Vector2 boxSize;
     public float attackRange = 1f;
+    public int mapSize = 20;
+    public int mapoffset = -9;
     public LayerMask attackMask;
     public void LookAtPlayer(){
         Vector3 flipped = transform.localScale;
@@ -35,6 +37,10 @@ public class stage1boss : MonoBehaviour
         if(colInfo != null){
             colInfo.GetComponent<CharacterStats>().TakeDamage(attackDamage);
         }
+    }
+    public void Teleport(){
+        transform.position = new Vector3(Random.Range(-7,7),transform.position.y,transform.position.z);
+        LookAtPlayer();
     }
 
     //for debug

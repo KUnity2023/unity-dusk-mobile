@@ -10,7 +10,8 @@ public class Search_Target : StateMachineBehaviour
    public Transform player;
    Rigidbody2D rb;
    public float speed = 2.5f;
-   public float cooldown = 0f;
+   public float cooldown = 8f;
+   public float currentCooldown = 0f;
    public float attackRange = 3f;
    stage1boss boss;
    //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -27,8 +28,16 @@ public class Search_Target : StateMachineBehaviour
    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
       boss.LookAtPlayer();
+      if(currentCooldown > 0)
+      {
+         currentCooldown -= Time.deltaTime;
+      }else{
+         animator.SetBool("isReady",true);
+         animator.SetTrigger("Teleport");
+      }
+      
       Vector2 target = new Vector2(player.position.x, rb.position.y);
-      //Debug.Log(target);
+      UnityEngine.Debug.Log(target);
       Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
       rb.MovePosition(newPos);
 
@@ -36,11 +45,15 @@ public class Search_Target : StateMachineBehaviour
          animator.SetTrigger("Attack");
       }
       //Move by teleport
+      
    }
 
    //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
       animator.ResetTrigger("Attack");
+      animator.ResetTrigger("Teleport");
+      animator.SetBool("isReady",false);
+      currentCooldown = cooldown;
    }
 }

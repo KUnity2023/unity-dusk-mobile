@@ -532,11 +532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1161247745137148858, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1
+      value: 6.69
       objectReference: {fileID: 0}
     - target: {fileID: 1161247745137148858, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8517573
+      value: -1.95
       objectReference: {fileID: 0}
     - target: {fileID: 1161247745137148858, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
       propertyPath: m_LocalPosition.z
@@ -579,6 +579,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5237001865595175407, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237001865595175407, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -602,6 +606,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -750047184722822154, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    - target: {fileID: 6448510175756353296, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6448510175756353296, guid: 3d8318f4205493f448da6b49ec45c786, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -769,6 +777,8 @@ MonoBehaviour:
   melee: {fileID: 1715948841}
   boxSize: {x: 2, y: 1.5}
   attackRange: 1.2
+  mapSize: 20
+  mapoffset: 0
   attackMask:
     serializedVersion: 2
     m_Bits: 8
@@ -1093,11 +1103,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7633361246721842361, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4287186
+      value: -3.55
       objectReference: {fileID: 0}
     - target: {fileID: 7633361246721842361, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4
+      value: -3.98
       objectReference: {fileID: 0}
     - target: {fileID: 7633361246721842361, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_LocalPosition.z
