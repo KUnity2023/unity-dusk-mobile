@@ -13,9 +13,11 @@ public class stage1boss : MonoBehaviour
     public Vector3 attackOffset;
     public Transform melee;
     public Vector2 boxSize;
+    public GameObject spellPrefab;
     public float attackRange = 1f;
     public int mapSize = 20;
     public int mapoffset = -9;
+    
     public LayerMask attackMask;
     private Animator ani;
     public void Start() {
@@ -44,7 +46,8 @@ public class stage1boss : MonoBehaviour
         melee.localPosition = new Vector3(-0.05f,-0.3f,0f);
         Collider2D colInfo = Physics2D.OverlapBox(melee.position,boxSize,0,attackMask);
         if(colInfo != null){
-            colInfo.GetComponent<CharacterStats>().TakeDamage(attackDamage);
+            if(!colInfo.GetComponent<CharacterManager>().blocking)
+                colInfo.GetComponent<CharacterStats>().TakeDamage(attackDamage);
             colInfo.GetComponent<CharacterManager>().OnDamaged(transform.position);
             //맞은 대상의 레이어를 잠시 바꾸고 일정시간 데미지가 안들어가도록
 
@@ -60,13 +63,22 @@ public class stage1boss : MonoBehaviour
         melee.localPosition = new Vector3(-0.15f,0,0);
         Collider2D colInfo = Physics2D.OverlapBox(melee.position,boxSize,0,attackMask);
         if(colInfo != null){
-            colInfo.GetComponent<CharacterStats>().TakeDamage(attackDamage);
+            if(!colInfo.GetComponent<CharacterManager>().blocking)
+                colInfo.GetComponent<CharacterStats>().TakeDamage(attackDamage);
             colInfo.GetComponent<CharacterManager>().OnDamaged(transform.position);
             //맞은 대상의 레이어를 잠시 바꾸고 일정시간 데미지가 안들어가도록
 
         }
         boxSize = new Vector2(2.3f,1.5f);
         melee.localPosition = new Vector3(-0.05f,-0.3f,0f);
+    }
+    public void CastSpell(){
+        int num = Random.Range(2,5);
+        for(int i = 0; i <num;i++){
+            Vector3 newPos = new Vector3(Random.Range(-6,6),-1.23f,0);
+            Instantiate(spellPrefab,newPos,transform.rotation);
+        }
+        
     }
     enum patterns{
         RangeAttack,
