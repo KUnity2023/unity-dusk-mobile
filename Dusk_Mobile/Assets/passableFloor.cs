@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class passableFloor : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class passableFloor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.S)){
+        if(Input.GetKeyDown(KeyCode.S)){ //모바일용 입력 필요
             Debug.Log("pass platform");
             if(currentPassblePlatform != null){
                 StartCoroutine(DisableCollision());
@@ -29,9 +30,9 @@ public class passableFloor : MonoBehaviour
         }
     }
     private IEnumerator DisableCollision(){
-        BoxCollider2D platformCollider = currentPassblePlatform.GetComponent<BoxCollider2D>();
+        TilemapCollider2D platformCollider = currentPassblePlatform.GetComponent<TilemapCollider2D>();
         Physics2D.IgnoreCollision(playerCollider, platformCollider);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.75f);
         Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
     }
 }
