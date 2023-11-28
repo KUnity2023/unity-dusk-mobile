@@ -28,16 +28,18 @@ public class CharacterManager : MonoBehaviour {
     private float               m_rollCurrentTime;
 
     private float currentTime;
-    public float coolTime = 0.5f;
+    public float atkCdw = 0f;
     public Transform pos;
     public bl_Joystick js;
     public Vector2 boxSize;
+    public CharacterStats myStats;
 
     // Use this for initialization
     void Start ()
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
+        myStats = GetComponent<CharacterStats>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
@@ -49,11 +51,12 @@ public class CharacterManager : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        
         Vector3 dir = new Vector3(js.Horizontal, js.Vertical, 0);
         dir.Normalize();
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
-
+        atkCdw -= Time.deltaTime;
         // Increase timer that checks roll duration
         if(m_rolling)
             m_rollCurrentTime += Time.deltaTime;
@@ -108,6 +111,7 @@ public class CharacterManager : MonoBehaviour {
         m_animator.SetBool("WallSlide", m_isWallSliding);
 
         //Death
+        /*
         if (Input.GetKeyDown("e") && !m_rolling)
         {
             m_animator.SetBool("noBlood", m_noBlood);
@@ -117,9 +121,9 @@ public class CharacterManager : MonoBehaviour {
         //Hurt
         else if (Input.GetKeyDown("q") && !m_rolling)
             m_animator.SetTrigger("Hurt");
-
+        */
         //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             // 충돌 감지 point = 박스 생성 위치, size = 박스 사이즈
             Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position,boxSize,0);
@@ -192,7 +196,16 @@ public class CharacterManager : MonoBehaviour {
         }
     }
 
+    //Events
+    public void Attack(CharacterStats targetStats){
+        float atkSpd = myStats.atkSpd.GetStat() * 0.1f;
+        if (atkCdw <= 0){
+            targetStats.TakeDamage(myStats.damage.GetStat());
+            atkCdw = 1f / atkSpd;
+        }
+    }
 
+    //for debug
     private void OnDrawGizmos(){
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(pos.position, boxSize);

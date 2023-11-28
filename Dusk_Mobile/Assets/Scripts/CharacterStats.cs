@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int maxHealth = 100;
+    public int curHealth { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    public Stats damage;
+    public Stats atkSpd; 
+    
+    private void Awake() {
+        curHealth = maxHealth;
+    }
+    public void TakeDamage(int damage)
     {
-        
+        curHealth -= damage;
     }
 }
