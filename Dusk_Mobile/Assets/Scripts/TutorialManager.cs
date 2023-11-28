@@ -14,4 +14,6 @@ public class TutorialManager : MonoBehaviour
             SceneManagerEX.Instance.LoadStage1();
         }
     }
+
+    
 }

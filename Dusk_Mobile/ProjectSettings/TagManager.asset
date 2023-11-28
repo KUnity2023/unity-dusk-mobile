@@ -8,6 +8,7 @@ TagManager:
   - imPassablePlatform
   - PassablePlatform
   - Enemy
+  - Spike
   layers:
   - Default
   - TransparentFX
