@@ -18,6 +18,7 @@ public class Search_Target : StateMachineBehaviour
    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
       //player = GameObject.FindGameObjectWithTag("Player").transform;
+      
       player = GameObject.Find("HeroKnight").transform;
       rb = animator.GetComponent<Rigidbody2D>();
       bossStat = animator.GetComponent<CharacterStats>();
@@ -31,18 +32,20 @@ public class Search_Target : StateMachineBehaviour
       if(currentCooldown > 0)
       {
          currentCooldown -= Time.deltaTime;
-      }else{
+      }
+      if(currentCooldown <= 0)
+      {
          animator.SetBool("isReady",true);
          animator.SetTrigger("Teleport");
          currentCooldown = cooldown;
       }
       
       Vector2 target = new Vector2(player.position.x, rb.position.y);
-      UnityEngine.Debug.Log(target);
+      //UnityEngine.Debug.Log(target);
       Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
       rb.MovePosition(newPos);
 
-      if(Vector2.Distance(player.position, rb.position) <= attackRange){
+      if(Vector2.Distance(player.position, rb.position) <= attackRange && currentCooldown > 0){
          animator.SetTrigger("Attack");
       }
       //Move by teleport

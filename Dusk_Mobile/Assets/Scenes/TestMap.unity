@@ -1201,6 +1201,10 @@ PrefabInstance:
       propertyPath: m_jumpForce
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1023323973184382315, guid: 44916c686b8828948bc71d6770472430, type: 3}
+      propertyPath: attackMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 1466084119262615809, guid: 44916c686b8828948bc71d6770472430, type: 3}
       propertyPath: m_Layer
       value: 0

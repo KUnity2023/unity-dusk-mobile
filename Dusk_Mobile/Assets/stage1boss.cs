@@ -33,7 +33,6 @@ public class stage1boss : MonoBehaviour
     }
     public void Attack(){
         Collider2D colInfo = Physics2D.OverlapBox(melee.position,boxSize,0,attackMask);
-        Debug.Log(colInfo);
         if(colInfo != null){
             colInfo.GetComponent<CharacterStats>().TakeDamage(attackDamage);
         }
@@ -41,6 +40,16 @@ public class stage1boss : MonoBehaviour
     public void Teleport(){
         transform.position = new Vector3(Random.Range(-7,7),transform.position.y,transform.position.z);
         LookAtPlayer();
+    }
+    enum patterns{
+        RangeAttack,
+        Cast,
+        CastNoEff
+    }
+    public string castRandomPattern(){
+        var enumValues = System.Enum.GetValues(enumType:typeof(patterns));
+        string pattern = enumValues.GetValue(Random.Range(0,enumValues.Length)).ToString();
+        return pattern;
     }
 
     //for debug

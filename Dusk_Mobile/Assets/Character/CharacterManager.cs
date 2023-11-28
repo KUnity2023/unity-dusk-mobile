@@ -33,6 +33,7 @@ public class CharacterManager : MonoBehaviour {
     public bl_Joystick js;
     public Vector2 boxSize;
     public CharacterStats myStats;
+    public LayerMask attackMask;
 
     // Use this for initialization
     void Start ()
@@ -127,10 +128,12 @@ public class CharacterManager : MonoBehaviour {
         if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             // 충돌 감지 point = 박스 생성 위치, size = 박스 사이즈
-            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position,boxSize,0);
+            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position,boxSize,0,attackMask);
             foreach(Collider2D collider in collider2Ds)
             {
                 Debug.Log(collider.tag);
+                CharacterStats enemyStats = collider.GetComponent<CharacterStats>();
+                enemyStats.TakeDamage(myStats.damage.GetStat());
             }
 
             m_currentAttack++;
