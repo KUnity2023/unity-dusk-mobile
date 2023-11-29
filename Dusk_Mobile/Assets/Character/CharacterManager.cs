@@ -62,7 +62,6 @@ public class CharacterManager : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        
         Vector3 dir = new Vector3(js.Horizontal, js.Vertical, 0);
         dir.Normalize();
         // Increase timer that controls attack combo
@@ -102,7 +101,6 @@ public class CharacterManager : MonoBehaviour {
             m_facingDirection = 1;
             pos.position = new Vector2(transform.position.x+1,transform.position.y+0.8f);
         }
-            
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
@@ -166,7 +164,7 @@ public class CharacterManager : MonoBehaviour {
 
         // Block
         //else if (Input.GetMouseButtonDown(1) && !m_rolling)
-        else if (inputGuard && !m_rolling)
+        if (inputGuard && !m_rolling)
         {
             m_animator.SetTrigger("Block");
             blocking = true; 
@@ -177,21 +175,19 @@ public class CharacterManager : MonoBehaviour {
             blocking = false; 
             m_animator.SetBool("IdleBlock", false);
         }
-            
 
         // Roll
         //else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
-        else if (inputRoll && !m_rolling && !m_isWallSliding)
+        if (inputRoll && !m_rolling && !m_isWallSliding)
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
             m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
         }
-            
 
         //Jump
         //else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
-        else if (inputJump && m_grounded && !m_rolling)
+        if (inputJump && m_grounded && !m_rolling)
         {
             m_animator.SetTrigger("Jump");
             m_grounded = false;
