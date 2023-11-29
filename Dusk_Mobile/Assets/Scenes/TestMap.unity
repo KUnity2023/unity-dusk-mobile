@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1943394156383696, guid: 2e2183501755a214591e802f3aff33d2, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4805181885227780, guid: 2e2183501755a214591e802f3aff33d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.311382
@@ -607,6 +611,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 132798136066650787, guid: 072d96812e0d453499c1fab4226a677c, type: 3}
+      propertyPath: inputGuard
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4893992957475376115, guid: 072d96812e0d453499c1fab4226a677c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
