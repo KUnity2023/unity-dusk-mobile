@@ -199,15 +199,14 @@ public class CharacterManager : MonoBehaviour {
             m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             m_groundSensor.Disable(0.2f);
         }
-
+        
         //Run
-        else if (Mathf.Abs(inputX) > Mathf.Epsilon)
+        if (Mathf.Abs(inputX) > Mathf.Epsilon)
         {
             // Reset timer
             m_delayToIdle = 0.05f;
             m_animator.SetInteger("AnimState", 1);
         }
-
         //Idle
         else
         {
