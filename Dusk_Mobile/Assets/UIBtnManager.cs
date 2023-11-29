@@ -18,7 +18,10 @@ public class UIBtnManager : MonoBehaviour
         playerScript.inputJump = true;
     }
     
-    public void AtkClick(){
+    public void AtkUp(){
+        playerScript.inputAttack = false;
+    } 
+    public void AtkDown(){
         playerScript.inputAttack = true;
     } 
 

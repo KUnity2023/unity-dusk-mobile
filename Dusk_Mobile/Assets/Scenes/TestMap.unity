@@ -123,6 +123,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &367019278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3072561253486844790, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+  m_PrefabInstance: {fileID: 3218813392651616105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &367019283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367019278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1613094601}
+          m_TargetAssemblyTypeName: UIBtnManager, Assembly-CSharp
+          m_MethodName: JumpDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1613094601}
+          m_TargetAssemblyTypeName: UIBtnManager, Assembly-CSharp
+          m_MethodName: JumpUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &575985644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -336,6 +386,156 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &808912130 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7010365421550100817, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+  m_PrefabInstance: {fileID: 3218813392651616105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &808912135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808912130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1613094601}
+          m_TargetAssemblyTypeName: UIBtnManager, Assembly-CSharp
+          m_MethodName: AtkDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1613094601}
+          m_TargetAssemblyTypeName: UIBtnManager, Assembly-CSharp
+          m_MethodName: AtkUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &913311617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7759326205381054200, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+  m_PrefabInstance: {fileID: 3218813392651616105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &913311622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913311617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1613094601}
+          m_TargetAssemblyTypeName: UIBtnManager, Assembly-CSharp
+          m_MethodName: GuardUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1613094601}
+          m_TargetAssemblyTypeName: UIBtnManager, Assembly-CSharp
+          m_MethodName: GuardDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &956088929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6090577409935966765, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+  m_PrefabInstance: {fileID: 3218813392651616105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &956088934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956088929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1613094601}
+          m_TargetAssemblyTypeName: UIBtnManager, Assembly-CSharp
+          m_MethodName: RollDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1613094601}
+          m_TargetAssemblyTypeName: UIBtnManager, Assembly-CSharp
+          m_MethodName: RollUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1290816454 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1689866831511430, guid: 2e2183501755a214591e802f3aff33d2, type: 3}
@@ -692,6 +892,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1875569253339289725, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875569253339289725, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875569253339289725, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3957574579151912735, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -783,6 +995,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 359963978604056553, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1613094601}
+    - targetCorrespondingSourceObject: {fileID: 7010365421550100817, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 808912135}
+    - targetCorrespondingSourceObject: {fileID: 6090577409935966765, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 956088934}
+    - targetCorrespondingSourceObject: {fileID: 7759326205381054200, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 913311622}
+    - targetCorrespondingSourceObject: {fileID: 3072561253486844790, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 367019283}
   m_SourcePrefab: {fileID: 100100000, guid: 0b1e26e771916a7408f0f0df839b807f, type: 3}
 --- !u!1001 &3436875178612327160
 PrefabInstance:
