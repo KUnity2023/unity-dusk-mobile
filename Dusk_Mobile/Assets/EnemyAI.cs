@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         Invoke("Patrol",5);
 
-        dectectRange = 6.0f;
+        dectectRange = 3.0f;
         atkRange = 1.0f;
     }  
     
@@ -45,7 +45,8 @@ public class EnemyAI : MonoBehaviour
         }
         else{
             //Move
-            rigid.velocity = new Vector2(nextMove,rigid.velocity.y);
+            //rigid.velocity = new Vector2(nextMove,rigid.velocity.y);
+            MoveToTarget();
         }
         
         //Check Platform
