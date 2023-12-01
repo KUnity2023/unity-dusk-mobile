@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Enemy_AI_New : MonoBehaviour
 {
     public Transform target;
+    private Transform melee;
     float attackDelay;
     public float dectectRange;
     public float atkRange;
     public float moveSpeed;
     public float atkSpeed;
+    public Vector2 boxSize;
 
     CharacterStats enemyStat;
     Animator enemyAnimator;
     Rigidbody2D rigid;
+    public LayerMask attackMask;
     void Start()
     {
         enemyStat = GetComponent<CharacterStats>();
         enemyAnimator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
+        melee = transform.GetChild(0).transform;
     }
 
     void Update()
@@ -83,8 +89,19 @@ public class Enemy_AI_New : MonoBehaviour
 
     void AttackTarget()
     {
-        target.GetComponent<CharacterStats>().TakeDamage(enemyStat.damage.GetStat());
         enemyAnimator.SetTrigger("Attack"); // 공격 애니메이션 실행
         attackDelay = atkSpeed; // 딜레이 충전
+        Collider2D colInfo = Physics2D.OverlapBox(melee.position,boxSize,0,attackMask);
+        if(colInfo != null){
+            if(!colInfo.GetComponent<CharacterManager>().blocking)
+                colInfo.GetComponent<CharacterStats>().TakeDamage(enemyStat.damage.GetStat());
+            colInfo.GetComponent<CharacterManager>().OnDamaged(transform.position);
+            //맞은 대상의 레이어를 잠시 바꾸고 일정시간 데미지가 안들어가도록
+        }
+    }
+
+    private void OnDrawGizmos(){
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(melee.position, boxSize);
     }
 }
