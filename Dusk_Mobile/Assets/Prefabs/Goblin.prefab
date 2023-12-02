@@ -251,4 +251,4 @@ MonoBehaviour:
   boxSize: {x: 2.6, y: 1}
   attackMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0

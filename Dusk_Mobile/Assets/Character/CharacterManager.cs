@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+
 public class CharacterManager : MonoBehaviour {
 
     [SerializeField] float      m_speed = 4.0f;

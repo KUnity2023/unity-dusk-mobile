@@ -1,13 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneManagerEX : MonoBehaviour
 {
     public string beforeSceneName;
+    public GameObject selectChar;
+    public GameObject[] CharacterPrefab;
+    public int[] HK_Start_Stat = { 3, 3, 0, 0 };
+    public int[] King_Start_Stat = { 2, 2, 1, 1 };
+    public int[] Women_Start_Stat = { 0, 1, 1, 4 };
+    public int[] max_Status = { 5, 5, 5, 5 };
+
     // 유일한 인스턴스를 저장할 정적 변수
     private static SceneManagerEX instance;
+    
 
     // 다른 스크립트에서 접근할 때 사용할 프로퍼티
     public static SceneManagerEX Instance
@@ -32,7 +41,7 @@ public class SceneManagerEX : MonoBehaviour
         }
     }
 
-    // 싱글톤의 기능을 구현할 메서드들은 여기에 추가
+    // 싱글톤의 기능을 구현할 메서드들은 아래에 추가
 
     private void Awake()
     {
@@ -48,15 +57,45 @@ public class SceneManagerEX : MonoBehaviour
         }
     }
 
+    //스테이지1 이동 스크립트
     public void LoadStage1()
     {
-        beforeSceneName = "TutorialMap";
+        beforeSceneName = "CharacterSelect";
         SceneManager.LoadScene("Loading");
     }
 
+    //캐선창 스크립트
+    public void LoadCharacterSelect()
+    {
+        beforeSceneName = "MainMenu";       
+        SceneManager.LoadScene("CharacterSelect");
+    }
+    //Tutorial Scene
     public void LoadTutorial()
     {
         beforeSceneName = "MainMenu";
         SceneManager.LoadScene("Loading");
+    }
+
+    public void LoadStage2()
+    {
+        beforeSceneName = "Stage1";
+        SceneManager.LoadScene("Loading");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ExitGame()
+    {
+        //게임 종료
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+
     }
 }

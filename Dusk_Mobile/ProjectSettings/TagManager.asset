@@ -4,11 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ladder
   - imPassablePlatform
+  - joystick
+  - Time
   - PassablePlatform
-  - Enemy
   - Spike
+  - Enemy
   layers:
   - Default
   - TransparentFX

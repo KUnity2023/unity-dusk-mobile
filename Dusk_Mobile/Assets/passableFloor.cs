@@ -21,11 +21,13 @@ public class passableFloor : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("PassablePlatform")){
+            Debug.Log(collision.gameObject.tag);
             currentPassblePlatform = collision.gameObject;
         }
     }
     private void OnCollisionExit2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("PassablePlatform")){
+            Debug.Log(collision.gameObject.tag);
             currentPassblePlatform = null;
         }
     }

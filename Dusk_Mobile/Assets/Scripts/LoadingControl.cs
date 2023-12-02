@@ -21,11 +21,19 @@ public class LoadingControl : MonoBehaviour
     {
         yield return null;
         if(SceneManagerEX.Instance.beforeSceneName == "MainMenu")
+        {
             operation = SceneManager.LoadSceneAsync("TutorialMap");
-        else if(SceneManagerEX.Instance.beforeSceneName == "TutorialMap")
+        }
+        else if (SceneManagerEX.Instance.beforeSceneName == "CharacterSelect")
+        {
             operation = SceneManager.LoadSceneAsync("Stage1");
+        }
+        else if (SceneManagerEX.Instance.beforeSceneName == "Stage1")
+        {
+            operation = SceneManager.LoadSceneAsync("Stage2");
+        }
 
-        operation.allowSceneActivation = false;
+            operation.allowSceneActivation = false;
 
         while (!operation.isDone)
         {
@@ -45,9 +53,9 @@ public class LoadingControl : MonoBehaviour
             }
             if (progressbar.value >= 1.0f)
             {
-                loadtext.text = "Press SpaceBar";
+                loadtext.text = "Touch Any Area";
             }
-            if (Input.GetKeyDown(KeyCode.Space) && progressbar.value >= 1f && operation.progress >= 0.9f)
+            if ((Input.touchCount>0 || Input.GetKeyDown(KeyCode.Space)) && progressbar.value >= 1f && operation.progress >= 0.9f)
             {
                 operation.allowSceneActivation = true;
                 StopAllCoroutines();
