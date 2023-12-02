@@ -26,7 +26,7 @@ public class Spellcast : MonoBehaviour
         Debug.Log(colInfo);
 
         if(colInfo.CompareTag("Player")){
-            Debug.Log("Attacked by spell");
+            Debug.Log("Attacked by spell2");
             colInfo.GetComponent<CharacterStats>().TakeDamage(20);
             colInfo.GetComponent<CharacterManager>().OnDamaged(transform.position);
             //맞은 대상의 레이어를 잠시 바꾸고 일정시간 데미지가 안들어가도록
@@ -34,12 +34,12 @@ public class Spellcast : MonoBehaviour
         //}
         
     }
-    private void OnTriggerEnter2D(Collision2D collision){
-        Debug.Log(collision.gameObject);
-        if(collision.gameObject.CompareTag("Player")){
+    public void OnTriggerEnter2D(Collider2D collision){
+        Debug.Log(collision);
+        if(collision.CompareTag("Player")){
             Debug.Log("Attacked by spell");
-            collision.gameObject.GetComponent<CharacterStats>().TakeDamage(20);
-            collision.gameObject.GetComponent<CharacterManager>().OnDamaged(transform.position);
+            collision.GetComponent<CharacterStats>().TakeDamage(20);
+            collision.GetComponent<CharacterManager>().OnDamaged(transform.position);
             //맞은 대상의 레이어를 잠시 바꾸고 일정시간 데미지가 안들어가도록
         }
     }
