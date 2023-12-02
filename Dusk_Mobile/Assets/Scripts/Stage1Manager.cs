@@ -107,7 +107,7 @@ public class Stage1Manager : MonoBehaviour
                 Invoke("Warp4_to_5", 0.5f);
                 fade.OnStageMove();
             }
-            else if (player.transform.position.x < -8.5 && player.transform.position.y > 1.2)
+            else if (player.transform.position.x < -8.5 && player.transform.position.y > 0.9)
             {
                 //Warp_4_to_6
                 Invoke("Warp_4_to_6", 0.5f);
