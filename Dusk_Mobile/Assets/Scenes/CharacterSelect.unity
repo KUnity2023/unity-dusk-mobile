@@ -363,6 +363,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2015933190861480717, guid: a824db646ede33045a22e0894166e678, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015933190861480717, guid: a824db646ede33045a22e0894166e678, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 2880
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015933190861480717, guid: a824db646ede33045a22e0894166e678, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1440
+      objectReference: {fileID: 0}
     - target: {fileID: 4106173747910059355, guid: a824db646ede33045a22e0894166e678, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
