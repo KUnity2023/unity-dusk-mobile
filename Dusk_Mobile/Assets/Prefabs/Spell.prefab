@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 856925601575013400}
   - component: {fileID: 6074943743178978960}
   - component: {fileID: 5344846690303463726}
-  - component: {fileID: 167323562242202504}
   - component: {fileID: 2220557489594785552}
+  - component: {fileID: 2986040501424544276}
   m_Layer: 12
   m_Name: Spell
   m_TagString: Untagged
@@ -108,8 +108,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &167323562242202504
-CapsuleCollider2D:
+--- !u!114 &2220557489594785552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7852881395460095963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79caf5e1b51bf354ea8d5446ba62d933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider2D: {fileID: 0}
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!61 &2986040501424544276
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -140,18 +156,16 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05724783, y: -0.17247732}
-  m_Size: {x: 0.27158186, y: 0.60735595}
-  m_Direction: 0
---- !u!114 &2220557489594785552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7852881395460095963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79caf5e1b51bf354ea8d5446ba62d933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Offset: {x: -0.028, y: -0.19}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4, y: 0.93}
+    newSize: {x: 1.4, y: 0.93}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.27, y: 0.55}
+  m_EdgeRadius: 0

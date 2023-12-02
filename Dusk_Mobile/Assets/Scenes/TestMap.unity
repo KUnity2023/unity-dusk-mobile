@@ -777,6 +777,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 167323562242202504, guid: 93487b39c2cd44241aabf82a8423b4c1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 167323562242202504, guid: 93487b39c2cd44241aabf82a8423b4c1, type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 856925601575013400, guid: 93487b39c2cd44241aabf82a8423b4c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.92
@@ -817,9 +825,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2986040501424544276, guid: 93487b39c2cd44241aabf82a8423b4c1, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7852881395460095963, guid: 93487b39c2cd44241aabf82a8423b4c1, type: 3}
       propertyPath: m_Name
       value: Spell
+      objectReference: {fileID: 0}
+    - target: {fileID: 7852881395460095963, guid: 93487b39c2cd44241aabf82a8423b4c1, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -857,6 +873,10 @@ PrefabInstance:
     - target: {fileID: 5344773397389900136, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487032326828092053, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
+      propertyPath: m_ColliderMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5763755100598590123, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
       propertyPath: m_Layer
