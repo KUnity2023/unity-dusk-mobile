@@ -18,7 +18,7 @@ public class Stage2Manager : MonoBehaviour
     private int[,] playerSpawnXY = new int[,] {
         {-9, -6},
         {0, -6},
-        {7, 8},
+        {0, 2},
         {-9, -6},
     };
     /*플레이어가 다음 스테이지로의 이동을 위한 범위
@@ -29,7 +29,7 @@ public class Stage2Manager : MonoBehaviour
      */
     private int[,] playerWarpXY = new int[,] {
         {-1, 4},
-        {4, 5},
+        {-10, -5},
         {10, 1}
     };
     public GameObject sceneName;
@@ -85,6 +85,11 @@ public class Stage2Manager : MonoBehaviour
                 Invoke("warp_2_to_3", 0.5f);
                 fade.OnStageMove();
             }
+            if(player.transform.position.x <= playerWarpXY[1, 0] && player.transform.position.y <= playerWarpXY[1, 1])
+            {
+                Invoke("warp_2_to_1", 0.5f);
+                fade.OnStageMove();
+            }
         }
         else if(sceneName.gameObject.name == "Stage2_3")
         {
@@ -108,5 +113,14 @@ public class Stage2Manager : MonoBehaviour
         stage[1].SetActive(false);
         stage[2].SetActive(true);
         sceneName = stage[2];
+    }
+
+    void warp_2_to_1()
+    {
+        Debug.Log("player.transform.position.x: " + player.transform.position.x);
+        player.transform.position = new Vector2(playerSpawnXY[2, 0], playerSpawnXY[2, 1]);
+        stage[1].SetActive(false);
+        stage[0].SetActive(true);
+        sceneName = stage[0];
     }
 }
