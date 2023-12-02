@@ -27,12 +27,6 @@ public class MainMenuController : MonoBehaviour
     }
     public void OnExitClick()
     {
-        //게임 종료
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-
+        SceneManagerEX.Instance.ExitGame();
     }
 }
