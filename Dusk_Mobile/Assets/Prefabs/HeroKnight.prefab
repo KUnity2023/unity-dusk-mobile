@@ -325,7 +325,11 @@ MonoBehaviour:
   myStats: {fileID: 0}
   attackMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
+  inputJump: 0
+  inputAttack: 0
+  inputGuard: 0
+  inputRoll: 0
 --- !u!114 &7559173211991870519
 MonoBehaviour:
   m_ObjectHideFlags: 0

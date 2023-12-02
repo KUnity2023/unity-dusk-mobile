@@ -92,8 +92,9 @@ public class Enemy_AI_New : MonoBehaviour
         enemyAnimator.SetTrigger("Attack"); // 공격 애니메이션 실행
         attackDelay = atkSpeed; // 딜레이 충전
         Collider2D colInfo = Physics2D.OverlapBox(melee.position,boxSize,0,attackMask);
-        if(colInfo != null){
-            if(!colInfo.GetComponent<CharacterManager>().blocking)
+        Debug.Log("colInfo: " + (colInfo == null));
+        if (colInfo != null){
+            if (!colInfo.GetComponent<CharacterManager>().blocking)
                 colInfo.GetComponent<CharacterStats>().TakeDamage(enemyStat.damage.GetStat());
             colInfo.GetComponent<CharacterManager>().OnDamaged(transform.position);
             //맞은 대상의 레이어를 잠시 바꾸고 일정시간 데미지가 안들어가도록

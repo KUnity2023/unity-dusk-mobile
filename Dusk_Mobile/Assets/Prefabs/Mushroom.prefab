@@ -131,7 +131,7 @@ MonoBehaviour:
   boxSize: {x: 0.8, y: 1}
   attackMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
 --- !u!114 &7668830499273739505
 MonoBehaviour:
   m_ObjectHideFlags: 0

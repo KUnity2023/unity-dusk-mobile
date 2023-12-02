@@ -10,7 +10,26 @@ public class CameraController : MonoBehaviour
     public Vector2 offset;
     public float limitMinX, limitMaxX, limitMinY, limitMaxY;
     float cameraHalfWidth, cameraHalfHeight;
+    private string targetTag = "Player"; // 찾고자 하는 태그
+    private GameObject targetGameObject;
 
+    private void Awake()
+    {
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(targetTag);
+
+        // 찾은 게임 오브젝트에 대한 처리
+        foreach (GameObject obj in objectsWithTag)
+        {
+            // 찾은 게임 오브젝트에 대한 로직을 추가
+            if (obj.tag == targetTag)
+            {
+                targetGameObject = obj;
+                break;
+            }
+        }
+
+        target = targetGameObject.transform;
+    }
     private void Start()
     {
         cameraHalfWidth = Camera.main.aspect * Camera.main.orthographicSize;
