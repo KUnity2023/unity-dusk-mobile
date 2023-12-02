@@ -13,8 +13,9 @@ public class passableFloor : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.S)){
-            Debug.Log("pass platform");
+            Debug.Log("pass platform", currentPassblePlatform);
             if(currentPassblePlatform != null){
+                Debug.Log("passing floor");
                 StartCoroutine(DisableCollision());
             }
         } 
@@ -22,11 +23,13 @@ public class passableFloor : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("PassablePlatform")){
             currentPassblePlatform = collision.gameObject;
+            Debug.Log("Enter col",currentPassblePlatform);
         }
     }
     private void OnCollisionExit2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("PassablePlatform")){
             currentPassblePlatform = null;
+            Debug.Log("Exit col",currentPassblePlatform);
         }
     }
     private IEnumerator DisableCollision(){
