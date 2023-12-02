@@ -505,7 +505,7 @@ PrefabInstance:
     - target: {fileID: 6428074213566623505, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: bc3397237df0b1f43892368055c56f6a, type: 2}
+      objectReference: {fileID: 9100000, guid: 3c2a5b7097b0fe44394328c0bdb9252e, type: 2}
     - target: {fileID: 7252369118967113239, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.971
@@ -549,7 +549,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6228054251482562161, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1052410495}
   m_SourcePrefab: {fileID: 100100000, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
 --- !u!1 &269345565
 GameObject:
@@ -8138,6 +8141,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756678747}
   m_CullTransparentMesh: 1
+--- !u!1 &777712846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6228054251482562161, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
+  m_PrefabInstance: {fileID: 245161036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &794305215
 GameObject:
   m_ObjectHideFlags: 0
@@ -11501,6 +11509,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7252369118967113239, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
   m_PrefabInstance: {fileID: 245161036}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1052410495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777712846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e11bd61c4d9850499e4fd465c787e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 1052410490}
 --- !u!1 &1093113180
 GameObject:
   m_ObjectHideFlags: 0
@@ -13038,8 +13059,7 @@ GameObject:
   - component: {fileID: 1355268834}
   - component: {fileID: 1355268836}
   - component: {fileID: 1355268837}
-  - component: {fileID: 1355268838}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: PassableFloor_11
   m_TagString: PassablePlatform
   m_Icon: {fileID: 0}
@@ -13461,19 +13481,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &1355268838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355268832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e11bd61c4d9850499e4fd465c787e50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCollider: {fileID: 1052410490}
 --- !u!1001 &1365223827
 PrefabInstance:
   m_ObjectHideFlags: 0

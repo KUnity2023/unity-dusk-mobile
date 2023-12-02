@@ -22,8 +22,10 @@ public class stage1boss : MonoBehaviour
     private Animator ani;
     public void Start() {
         ani = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         boxSize = new Vector2(2.3f,1.5f);
         melee.localPosition = new Vector3(-0.05f,-0.3f,0f);
+        attackMask = LayerMask.GetMask("Player");
     }
     public void LookAtPlayer(){
         Vector3 flipped = transform.localScale;
