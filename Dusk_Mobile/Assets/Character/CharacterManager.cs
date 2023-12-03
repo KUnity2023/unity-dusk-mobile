@@ -62,6 +62,7 @@ public class CharacterManager : MonoBehaviour {
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
         //m_atkHitbox = transform.Find("melee").GetComponent<GameObject>();
         UIBtnManager ui = GameObject.Find("ButtonUI").GetComponent<UIBtnManager>();
+        js = GameObject.Find("Joystick").GetComponent<bl_Joystick>();
         ui.Init();
     }
 
