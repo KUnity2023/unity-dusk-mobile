@@ -38,7 +38,7 @@ public class Enemy_AI_New : MonoBehaviour
             float distance = Vector3.Distance(transform.position, target.position);
             float distanceY = Math.Abs(transform.position.y - target.position.y);
 
-            if (attackDelay == 0 && distance <= dectectRange && distanceY <= 1.1f)
+            if ((attackDelay == 0) && (distance <= dectectRange) && (distanceY <= 1.1f))
             {
                 FaceTarget();
 
@@ -66,7 +66,8 @@ public class Enemy_AI_New : MonoBehaviour
     {
         float dir = target.position.x - transform.position.x;
         dir = (dir < 0) ? -1 : 1;
-        Vector2 frontVec = new Vector2(rigid.position.x + 0.3f,rigid.position.y);
+
+        Vector2 frontVec = new Vector2(rigid.position.x + dir * 0.3f,rigid.position.y);
         Debug.DrawRay(frontVec, Vector3.down,new(0,1,0));
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec,Vector3.down,1,LayerMask.GetMask("Platform"));
         if(rayHit.collider == null){
