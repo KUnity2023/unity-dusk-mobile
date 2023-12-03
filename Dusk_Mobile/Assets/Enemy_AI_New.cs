@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.ReorderableList;
@@ -34,8 +35,9 @@ public class Enemy_AI_New : MonoBehaviour
         if(attackDelay < 0) attackDelay = 0;
         if(target != null){
             float distance = Vector3.Distance(transform.position, target.position);
+            float distanceY = Math.Abs(transform.position.y - target.position.y);
 
-            if (attackDelay == 0 && distance <= dectectRange)
+            if (attackDelay == 0 && distance <= dectectRange && distanceY <= 2.0f)
             {
                 FaceTarget();
 
