@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage2Phase1 : StateMachineBehaviour
+public class Stage2Phase3 : StateMachineBehaviour
 {
     public int attackDamage = 10;
     public int spellDamage = 20;
@@ -20,7 +20,7 @@ public class Stage2Phase1 : StateMachineBehaviour
     {
         cooldown = 2.2f;
         currentCooldown = 1.5f;
-        numOfPatterns = 2;
+        numOfPatterns = 4;
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         bossStat = animator.GetComponent<CharacterStats>();
@@ -40,9 +40,6 @@ public class Stage2Phase1 : StateMachineBehaviour
             //animator.SetTrigger("pattern");
             animator.SetInteger("patternNum",Random.Range(1,numOfPatterns+1)); 
             currentCooldown = cooldown;
-        }
-        if(bossStat.curHealth<=500){
-            animator.SetBool("Phase_2",true);
         }
     }
 

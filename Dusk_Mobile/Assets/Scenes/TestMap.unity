@@ -497,6 +497,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1556443551823441119, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798652717813517638, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7276493241908894625, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
       propertyPath: m_Name
       value: Stage2_Golem
@@ -505,6 +513,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2176414687715430724}
+    - target: {fileID: 8324010886031393523, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324010886031393523, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
