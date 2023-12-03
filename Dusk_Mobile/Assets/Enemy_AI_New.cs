@@ -69,7 +69,7 @@ public class Enemy_AI_New : MonoBehaviour
 
         Vector2 frontVec = new Vector2(rigid.position.x + dir * 0.3f,rigid.position.y);
         Debug.DrawRay(frontVec, Vector3.down,new(0,1,0));
-        RaycastHit2D rayHit = Physics2D.Raycast(frontVec,Vector3.down,1,LayerMask.GetMask("Platform"));
+        RaycastHit2D rayHit = Physics2D.Raycast(frontVec,Vector3.down,1,LayerMask.GetMask("Platform","PassablePlatform"));
         if(rayHit.collider == null){
             enemyAnimator.SetBool("moving", false);
         }else{
