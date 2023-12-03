@@ -27,6 +27,7 @@ public class Enemy_AI_New : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
         melee = transform.GetChild(0).transform;
+        attackMask = LayerMask.GetMask("Player");
     }
 
     void Update()
@@ -94,7 +95,7 @@ public class Enemy_AI_New : MonoBehaviour
         enemyAnimator.SetTrigger("Attack"); // 공격 애니메이션 실행
         attackDelay = atkSpeed; // 딜레이 충전
         Collider2D colInfo = Physics2D.OverlapBox(melee.position,boxSize,0,attackMask);
-        Debug.Log("colInfo: " + (colInfo == null));
+        Debug.Log("colInfo: " + (colInfo != null));
         if (colInfo != null){
             if (!colInfo.GetComponent<CharacterManager>().blocking)
                 colInfo.GetComponent<CharacterStats>().TakeDamage(enemyStat.damage.GetStat());
