@@ -51,6 +51,7 @@ public class Stage1Manager : MonoBehaviour
     private void Update()
     {
         TurnScene();
+        
     }
     void TurnScene()
     {
@@ -101,25 +102,10 @@ public class Stage1Manager : MonoBehaviour
                 Invoke("Warp4_to_2", 0.5f);
                 fade.OnStageMove();
             }
-            else if (player.transform.position.x > 10.5)
-            {
-                //Warp4_to_5
-                Invoke("Warp4_to_5", 0.5f);
-                fade.OnStageMove();
-            }
             else if (player.transform.position.x < -8.5 && player.transform.position.y > 0.9)
             {
                 //Warp_4_to_6
                 Invoke("Warp_4_to_6", 0.5f);
-                fade.OnStageMove();
-            }
-        }
-        else if(sceneName.gameObject.name == "Stage1_5")
-        {
-            if (player.transform.position.x < -10.5)
-            {
-                //Warp_5_to_4
-                Invoke("Warp_5_to_4", 0.5f);
                 fade.OnStageMove();
             }
         }
@@ -186,31 +172,12 @@ public class Stage1Manager : MonoBehaviour
         stage[1].SetActive(true);
         sceneName = stage[1];
     }
-
-    void Warp4_to_5()
+    void Warp_4_to_6()
     {
         Debug.Log("player.transform.position.x: " + player.transform.position.x);
         player.transform.position = new Vector2(playerX, playerY);
         stage[3].SetActive(false);
         stage[4].SetActive(true);
         sceneName = stage[4];
-    }
-
-    void Warp_4_to_6()
-    {
-        Debug.Log("player.transform.position.x: " + player.transform.position.x);
-        player.transform.position = new Vector2(playerX, playerY);
-        stage[3].SetActive(false);
-        stage[5].SetActive(true);
-        sceneName = stage[5];
-    }
-
-    void Warp_5_to_4()
-    {
-        Debug.Log("player.transform.position.x: " + player.transform.position.x);
-        player.transform.position = new Vector2(playerX, playerY);
-        stage[4].SetActive(false);
-        stage[3].SetActive(true);
-        sceneName = stage[3];
     }
 }
