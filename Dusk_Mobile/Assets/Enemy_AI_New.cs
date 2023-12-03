@@ -38,7 +38,7 @@ public class Enemy_AI_New : MonoBehaviour
             float distance = Vector3.Distance(transform.position, target.position);
             float distanceY = Math.Abs(transform.position.y - target.position.y);
 
-            if (attackDelay == 0 && distance <= dectectRange && distanceY <= 1.5f)
+            if (attackDelay == 0 && distance <= dectectRange && distanceY <= 1.1f)
             {
                 FaceTarget();
 
