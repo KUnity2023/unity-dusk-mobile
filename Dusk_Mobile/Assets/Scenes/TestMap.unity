@@ -704,6 +704,10 @@ PrefabInstance:
       propertyPath: js
       value: 
       objectReference: {fileID: 2114772563}
+    - target: {fileID: 7235439532323562634, guid: 3e4f7554768c19f40953420db28b5708, type: 3}
+      propertyPath: inputGuard
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7645557669255089997, guid: 3e4f7554768c19f40953420db28b5708, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.13
@@ -743,6 +747,10 @@ PrefabInstance:
     - target: {fileID: 7645557669255089997, guid: 3e4f7554768c19f40953420db28b5708, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723012166582128126, guid: 3e4f7554768c19f40953420db28b5708, type: 3}
+      propertyPath: m_ColliderMask.m_Bits
+      value: 576
       objectReference: {fileID: 0}
     - target: {fileID: 8606960264371834043, guid: 3e4f7554768c19f40953420db28b5708, type: 3}
       propertyPath: m_Name
