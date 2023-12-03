@@ -64,6 +64,8 @@ public class CharacterManager : MonoBehaviour {
         UIBtnManager ui = GameObject.Find("ButtonUI").GetComponent<UIBtnManager>();
         js = GameObject.Find("Joystick").GetComponent<bl_Joystick>();
         ui.Init();
+        Physics2D.IgnoreLayerCollision(3,8,true); //3: player, 8: enemy
+
     }
 
     // Update is called once per frame
@@ -262,18 +264,16 @@ public class CharacterManager : MonoBehaviour {
         gameObject.layer = 3;
         m_spriteRenderer.color = new Color(1, 1, 1, 1);
     }
-        private void OnCollisionEnter2D(Collision2D collision) {
+    public void OnCollisionEnter2D(Collision2D collision) {
+        Debug.Log(collision.gameObject.tag);
+        Debug.Log("Enter col",currentPassblePlatform);
         if(collision.gameObject.CompareTag("PassablePlatform")){
-            //Debug.Log(collision.gameObject.tag);
             currentPassblePlatform = collision.gameObject;
-            //Debug.Log("Enter col",currentPassblePlatform);
         }
     }
-    private void OnCollisionExit2D(Collision2D collision) {
+    public void OnCollisionExit2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("PassablePlatform")){
-            //Debug.Log(collision.gameObject.tag);
             currentPassblePlatform = null;
-            //Debug.Log("Exit col",currentPassblePlatform);
         }
     }
     private IEnumerator DisableCollision(){
