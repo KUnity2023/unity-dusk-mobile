@@ -701,7 +701,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003143014893300863}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4993,6 +4993,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1101690873466181166}
   - {fileID: 2365572344632884040}
   - {fileID: 7770916312234438305}
   - {fileID: 5448352569084429190}
@@ -5002,7 +5003,6 @@ RectTransform:
   - {fileID: 6866810588787834508}
   - {fileID: 7083120477557760978}
   - {fileID: 2919870314745649274}
-  - {fileID: 1101690873466181166}
   - {fileID: 6755963059884219930}
   - {fileID: 8418651138910326248}
   m_Father: {fileID: 0}
@@ -5110,8 +5110,6 @@ MonoBehaviour:
   power_Status_Bar: {fileID: 873367724095639715}
   SpeedStatText: {fileID: 4583728572776294836}
   speed_Status_Bar: {fileID: 2403066416050111391}
-  s1Manager: {fileID: 0}
-  s2Manager: {fileID: 0}
   LEVEL: {fileID: 5681336913683120184}
   HK_Img:
   - {fileID: 21300032, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
