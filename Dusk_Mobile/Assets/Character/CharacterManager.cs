@@ -73,6 +73,7 @@ public class CharacterManager : MonoBehaviour {
     {
         Vector3 dir = new Vector3(js.Horizontal, js.Vertical, 0);
         dir.Normalize();
+        Debug.Log(dir);
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
         atkCdw -= Time.deltaTime;
@@ -196,13 +197,13 @@ public class CharacterManager : MonoBehaviour {
 
         //Jump
         //else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
-        if(inputJump){
-            if(dir.y <= -0.7f){
+        if(inputJump || Input.GetKeyDown("space")){
+            if(inputY <= -0.7){
                 if(currentPassblePlatform != null){
                     StartCoroutine(DisableCollision());
                 }
             }
-            if (m_grounded && !m_rolling) //JUMP
+            else if (m_grounded && !m_rolling) //JUMP
             {
                 m_animator.SetTrigger("Jump");
                 m_grounded = false;
