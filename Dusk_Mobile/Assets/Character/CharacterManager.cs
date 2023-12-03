@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.Tilemaps;
 
 public class CharacterManager : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class CharacterManager : MonoBehaviour {
     [SerializeField] float      m_rollForce = 6.0f;
     [SerializeField] bool       m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
+    private GameObject currentPassblePlatform;
+    [SerializeField] private BoxCollider2D playerCollider;
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
@@ -51,6 +54,7 @@ public class CharacterManager : MonoBehaviour {
         m_body2d = GetComponent<Rigidbody2D>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
         myStats = GetComponent<CharacterStats>();
+        playerCollider = GetComponent<BoxCollider2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
@@ -58,7 +62,10 @@ public class CharacterManager : MonoBehaviour {
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
         //m_atkHitbox = transform.Find("melee").GetComponent<GameObject>();
         UIBtnManager ui = GameObject.Find("ButtonUI").GetComponent<UIBtnManager>();
+        js = GameObject.Find("Joystick").GetComponent<bl_Joystick>();
         ui.Init();
+        Physics2D.IgnoreLayerCollision(3,8,true); //3: player, 8: enemy
+
     }
 
     // Update is called once per frame
@@ -189,14 +196,23 @@ public class CharacterManager : MonoBehaviour {
 
         //Jump
         //else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
-        if (inputJump && m_grounded && !m_rolling)
-        {
-            m_animator.SetTrigger("Jump");
-            m_grounded = false;
-            m_animator.SetBool("Grounded", m_grounded);
-            m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
-            m_groundSensor.Disable(0.2f);
-        }
+        if(inputJump){
+            if(dir.y <= -0.7f){
+                if(currentPassblePlatform != null){
+                    StartCoroutine(DisableCollision());
+                }
+            }
+            if (m_grounded && !m_rolling) //JUMP
+            {
+                m_animator.SetTrigger("Jump");
+                m_grounded = false;
+                m_animator.SetBool("Grounded", m_grounded);
+                m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
+                m_groundSensor.Disable(0.2f);
+            }
+        } 
+
+        
         
         //Run
         if (Mathf.Abs(inputX) > Mathf.Epsilon)
@@ -247,6 +263,24 @@ public class CharacterManager : MonoBehaviour {
     {
         gameObject.layer = 3;
         m_spriteRenderer.color = new Color(1, 1, 1, 1);
+    }
+    public void OnCollisionEnter2D(Collision2D collision) {
+        Debug.Log(collision.gameObject.tag);
+        Debug.Log("Enter col",currentPassblePlatform);
+        if(collision.gameObject.CompareTag("PassablePlatform")){
+            currentPassblePlatform = collision.gameObject;
+        }
+    }
+    public void OnCollisionExit2D(Collision2D collision) {
+        if(collision.gameObject.CompareTag("PassablePlatform")){
+            currentPassblePlatform = null;
+        }
+    }
+    private IEnumerator DisableCollision(){
+        TilemapCollider2D platformCollider = currentPassblePlatform.GetComponent<TilemapCollider2D>();
+        Physics2D.IgnoreCollision(playerCollider, platformCollider);
+        yield return new WaitForSeconds(0.75f);
+        Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
     }
 
     void AE_SlideDust()
