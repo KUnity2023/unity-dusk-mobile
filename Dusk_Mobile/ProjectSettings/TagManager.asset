@@ -23,7 +23,7 @@ TagManager:
   - PassablePlatform
   - PlayerDamaged
   - EnemyDamaged
-  - 
+  - EnemySpell
   - 
   - 
   - 
