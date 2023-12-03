@@ -10,28 +10,31 @@ public class passableFloor : MonoBehaviour
 
 
     // Update is called once per frame
+    void Awake(){
+        playerCollider = GetComponent<BoxCollider2D>();
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.S)){
-            Debug.Log("pass platform", currentPassblePlatform);
+            //Debug.Log("pass platform", currentPassblePlatform);
             if(currentPassblePlatform != null){
-                Debug.Log("passing floor");
+                //Debug.Log("passing floor");
                 StartCoroutine(DisableCollision());
             }
         } 
     }
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("PassablePlatform")){
-            Debug.Log(collision.gameObject.tag);
+            //Debug.Log(collision.gameObject.tag);
             currentPassblePlatform = collision.gameObject;
-            Debug.Log("Enter col",currentPassblePlatform);
+            //Debug.Log("Enter col",currentPassblePlatform);
         }
     }
     private void OnCollisionExit2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("PassablePlatform")){
-            Debug.Log(collision.gameObject.tag);
+            //Debug.Log(collision.gameObject.tag);
             currentPassblePlatform = null;
-            Debug.Log("Exit col",currentPassblePlatform);
+            //Debug.Log("Exit col",currentPassblePlatform);
         }
     }
     private IEnumerator DisableCollision(){
