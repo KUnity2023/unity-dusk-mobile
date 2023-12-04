@@ -7,18 +7,18 @@ using UnityEngine.UI;
 public class Stage1Manager : MonoBehaviour
 {
     /*
-     * ÇÃ·¹ÀÌ¾î ÇöÀç ½ºÅÈ ÇöÈ²
-     * ÇÃ·¹ÀÌ¾î´Â HP, Power, Attack Speed, Speed 4°³ÀÇ Stat ¼ÒÀ¯
-     * ¿¹½Ã·Î »ç¿ëÇÏ´Â Hero Knight´Â 3 3 0 0À¸·Î ½ÃÀÛÇÒ ¿¹Á¤
+     * ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²
+     * ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ HP, Power, Attack Speed, Speed 4ï¿½ï¿½ï¿½ï¿½ Stat ï¿½ï¿½ï¿½ï¿½
+     * ï¿½ï¿½ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Hero Knightï¿½ï¿½ 3 3 0 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
      */
     
-    private string targetTag = "Player"; // Ã£°íÀÚ ÇÏ´Â ÅÂ±×
+    private string targetTag = "Player"; // Ã£ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Â±ï¿½
     private GameObject player;
 
     private float playerX = -8;
     private float playerY = -5;
 
-    //YÃà ±æÀÌ ÀÌ½´·Î SelectedChar¿¡ µû¶ó ¿ÀÇÁ¼Â
+    //Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì½ï¿½ï¿½ï¿½ SelectedCharï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private float hero3rdOffset = -0.8f;
     private float herokingOffset = -1.6f;
 
@@ -50,17 +50,17 @@ public class Stage1Manager : MonoBehaviour
         //Find Player
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(targetTag);
 
-        // Ã£Àº °ÔÀÓ ¿ÀºêÁ§Æ®¿¡ ´ëÇÑ Ã³¸®
+        // Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         foreach (GameObject obj in objectsWithTag)
         {
-            // Ã£Àº °ÔÀÓ ¿ÀºêÁ§Æ®¿¡ ´ëÇÑ ·ÎÁ÷À» Ãß°¡
+            // Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
             if (obj.tag == targetTag)
             {
                 player = obj;
                 break;
             }
         }
-        //ÀÌ·¯¸é {2,2,5,5} °¡ µÊ.
+        //ï¿½Ì·ï¿½ï¿½ï¿½ {2,2,5,5} ï¿½ï¿½ ï¿½ï¿½.
         for(int i = 0; i < 4; i++)
         {
             if(SceneManagerEX.Instance.selectChar.name == "HeroKnight")
@@ -97,7 +97,7 @@ public class Stage1Manager : MonoBehaviour
         if(sceneName.gameObject.name == "Stage1_6" && !isBossDead)
         {
             BOSShealthBar.SetActive(true);
-            //ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀ» °»½Å (ÇÃ·¹ÀÌ¾î Ã¼·ÂÀÌ ¿Ô´Ù°¬´Ù ÇÏ´Â °÷¿¡ ¹èÄ¡)
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ù°ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡)
             BhealthBar.value = ((float)Stage1_Boss.GetComponent<CharacterStats>().curHealth / (float)Stage1_Boss.GetComponent<CharacterStats>().maxHealth);
             //Debug.Log("PlayerHealthValue"+healthBar.value);
             //Debug.Log("PlayerHealth: " + characterStats.curHealth + "/" + characterStats.maxHealth);
@@ -172,7 +172,7 @@ public class Stage1Manager : MonoBehaviour
         else
         {
             //Stage1_6(Boss Room)
-            //º¸½º ÇÇ·Î isBossDead ¿©ºÎ ÆÇº°
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½Ç·ï¿½ isBossDead ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½
             if(bossStatus.curHealth <= 0)
             {
                 isBossDead = true;
