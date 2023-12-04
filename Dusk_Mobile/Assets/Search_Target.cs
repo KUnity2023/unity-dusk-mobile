@@ -18,9 +18,10 @@ public class Search_Target : StateMachineBehaviour
    
    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
-      //player = GameObject.FindGameObjectWithTag("Player").transform;
-      
-      player = GameObject.Find("HeroKnight").transform;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
+
+      UnityEngine.Debug.Log(SceneManagerEX.Instance.selectChar.name.ToString() + "(Clone)");
+      player = GameObject.Find(SceneManagerEX.Instance.selectChar.name.ToString()+"(Clone)").transform;
       rb = animator.GetComponent<Rigidbody2D>();
       bossStat = animator.GetComponent<CharacterStats>();
       boss = animator.GetComponent<stage1boss>();

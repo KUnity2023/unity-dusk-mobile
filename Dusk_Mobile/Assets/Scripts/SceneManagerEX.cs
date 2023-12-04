@@ -7,12 +7,29 @@ using UnityEngine.SceneManagement;
 public class SceneManagerEX : MonoBehaviour
 {
     public string beforeSceneName;
+
     public GameObject selectChar;
+
     public GameObject[] CharacterPrefab;
+
+    public float totalTime = 0f;
+
     public int[] HK_Start_Stat = { 3, 3, 0, 0 };
     public int[] King_Start_Stat = { 2, 2, 1, 1 };
     public int[] Women_Start_Stat = { 0, 1, 1, 4 };
     public int[] max_Status = { 5, 5, 5, 5 };
+    [SerializeField]
+    [Header("Stage1_Status")]
+    public int health;
+    
+
+    /*
+     * Player의 만렙: 15
+     * Player가 한번 레벨업하는데 필요한 경험치 통은 20
+     * 따라서 몬스터는 한마리당 경험치 6 스테이지1 보스는 경험치 20
+     */
+    public int player_level;
+    public int player_Exp;
 
     // 유일한 인스턴스를 저장할 정적 변수
     private static SceneManagerEX instance;
@@ -55,8 +72,21 @@ public class SceneManagerEX : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        //restart시 초기화
+        player_level = 1;
+        player_Exp = 0;
     }
 
+    public void init()
+    {
+        player_level = 1;
+        player_Exp = 0;
+        totalTime = 0f;
+        for(int i = 0; i < max_Status.Length; i++)
+        {
+            max_Status[i] = 5;
+        }
+    }
     //스테이지1 이동 스크립트
     public void LoadStage1()
     {
@@ -85,6 +115,7 @@ public class SceneManagerEX : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        init();
         SceneManager.LoadScene("MainMenu");
     }
 

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Stage2Manager : MonoBehaviour
 {
@@ -35,11 +37,19 @@ public class Stage2Manager : MonoBehaviour
     public GameObject sceneName;
     public GameObject[] stage;
     public GameObject stageMovePanel;
+    public GameObject stage2_Boss;
     public FadeEffect fade;
-    private bool isBossDead;
 
+    private bool isBossDead;
+    private CharacterStats bossStatus;
+
+    [Header("BOSS")]
+    public TextMeshProUGUI BOSSHPText;
+    public GameObject BOSShealthBar;
+    private Slider BhealthBar;
     void Awake()
     {
+        Instantiate(SceneManagerEX.Instance.selectChar);
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(targetTag);
 
         // 찾은 게임 오브젝트에 대한 처리
@@ -52,22 +62,33 @@ public class Stage2Manager : MonoBehaviour
                 break;
             }
         }
-        //이러면 {2,2,5,5} 가 됨.
-        for (int i = 0; i < 4; i++)
-        {
-            SceneManagerEX.Instance.max_Status[i] -= SceneManagerEX.Instance.HK_Start_Stat[i];
-        }
+
+        player.GetComponent<CharacterStats>().maxHealth = SceneManagerEX.Instance.max_Status[0] * 50 + 50;
 
         fade = stageMovePanel.GetComponent<FadeEffect>();
         //실제로는 Stage1_6에서 보스를 감지해서 피가 0보다 작아지면 true로 전환 후 다음 방으로 넘어가는 문 출현
-        isBossDead = true;
+        isBossDead = false;
+        bossStatus = stage2_Boss.GetComponent<CharacterStats>();
+        BhealthBar = BOSShealthBar.GetComponent<Slider>();
     }
 
     private void Update()
     {
         TurnScene();
+        BOSShealth();
     }
-
+    void BOSShealth()
+    {
+        if (sceneName.gameObject.name == "Stage2_3")
+        {
+            BOSShealthBar.SetActive(true);
+            //플레이어의 체력을 갱신 (플레이어 체력이 왔다갔다 하는 곳에 배치)
+            BhealthBar.value = ((float)stage2_Boss.GetComponent<CharacterStats>().curHealth / (float)stage2_Boss.GetComponent<CharacterStats>().maxHealth);
+            //Debug.Log("PlayerHealthValue"+healthBar.value);
+            //Debug.Log("PlayerHealth: " + characterStats.curHealth + "/" + characterStats.maxHealth);
+            BOSSHPText.text = stage2_Boss.GetComponent<CharacterStats>().curHealth.ToString() + "/" + stage2_Boss.GetComponent<CharacterStats>().maxHealth.ToString();
+        }
+    }
     void TurnScene()
     {
         if(sceneName.gameObject.name == "Stage2_1")
@@ -93,7 +114,15 @@ public class Stage2Manager : MonoBehaviour
         }
         else if(sceneName.gameObject.name == "Stage2_3")
         {
+            if(bossStatus.curHealth<= 0)
+            {
+                isBossDead = true;
 
+                if (isBossDead)
+                {
+                    Invoke("LoadClearScene", 6);
+                }
+            }
         }
     }
 
@@ -122,5 +151,10 @@ public class Stage2Manager : MonoBehaviour
         stage[1].SetActive(false);
         stage[0].SetActive(true);
         sceneName = stage[0];
+    }
+
+    void LoadClearScene()
+    {
+        SceneManager.LoadScene("GameClear");
     }
 }

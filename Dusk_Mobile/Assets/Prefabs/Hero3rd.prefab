@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 2606414691424199900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.11, y: -4.89, z: 0}
+  m_LocalPosition: {x: -8, y: -5, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -186,7 +186,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -306,6 +306,7 @@ MonoBehaviour:
   m_rollForce: 6
   m_noBlood: 0
   m_slideDust: {fileID: 1038168246061390451, guid: 8b8c8cc6774fb074cb9139cc631b108e, type: 3}
+  playerCollider: {fileID: 0}
   atkCdw: 4
   blocking: 0
   pos: {fileID: 117368387245013040}
@@ -334,9 +335,9 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   damage:
-    baseStat: 10
+    baseStat: 20
   atkSpd:
-    baseStat: 0
+    baseStat: 1
 --- !u!114 &7960548517604899931
 MonoBehaviour:
   m_ObjectHideFlags: 0

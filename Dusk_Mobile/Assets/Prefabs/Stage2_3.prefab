@@ -294,6 +294,7 @@ Transform:
   - {fileID: 4615529423678646297}
   - {fileID: 7279509115985316294}
   - {fileID: 6385666458260596266}
+  - {fileID: 3743690617317038404}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &2808544275536831714
@@ -4337,3 +4338,65 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1001 &3767193276416883280
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4487792863283243803}
+    m_Modifications:
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276493241908894625, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+      propertyPath: m_Name
+      value: Stage2_Golem
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+--- !u!4 &3743690617317038404 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 554928583432495892, guid: 51284ab6bca80994698209013bbe7fc0, type: 3}
+  m_PrefabInstance: {fileID: 3767193276416883280}
+  m_PrefabAsset: {fileID: 0}

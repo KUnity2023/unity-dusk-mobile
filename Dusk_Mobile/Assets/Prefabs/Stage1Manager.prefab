@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f2147604bf0af4eb0ed63dcafd4c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpawn: {fileID: 0}
   sceneName: {fileID: 0}
   stage:
   - {fileID: 0}
@@ -53,3 +54,23 @@ MonoBehaviour:
   - {fileID: 0}
   stageMovePanel: {fileID: 0}
   fade: {fileID: 0}
+  Stage1_Boss: {fileID: 0}
+  stage2Entry: {fileID: 0}
+  hiddenEnemy:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerChar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  BOSSHPText: {fileID: 0}
+  BOSShealthBar: {fileID: 0}
+  stage2Door: {fileID: 0}

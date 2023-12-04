@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.ReorderableList;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Enemy_AI_New : MonoBehaviour
@@ -59,7 +57,6 @@ public class Enemy_AI_New : MonoBehaviour
                 enemyAnimator.SetBool("moving", false);
             }
         }
-        
     }
 
     void MoveToTarget()
@@ -107,6 +104,6 @@ public class Enemy_AI_New : MonoBehaviour
 
     private void OnDrawGizmos(){
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(melee.position, boxSize);
+        //Gizmos.DrawWireCube(melee.position, boxSize);
     }
 }

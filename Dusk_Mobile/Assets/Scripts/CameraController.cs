@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     private string targetTag = "Player"; // 찾고자 하는 태그
     private GameObject targetGameObject;
 
-    private void Awake()
+    private void Start()
     {
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(targetTag);
 
@@ -29,9 +29,7 @@ public class CameraController : MonoBehaviour
         }
 
         target = targetGameObject.transform;
-    }
-    private void Start()
-    {
+
         cameraHalfWidth = Camera.main.aspect * Camera.main.orthographicSize;
         cameraHalfHeight = Camera.main.orthographicSize;
     }

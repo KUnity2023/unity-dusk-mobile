@@ -6,6 +6,7 @@ using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -42,6 +43,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI playerName;
     public Image playerImg;
     public TextMeshProUGUI playerLevel;
+
     //PlayerStats의 현재 플레이어 스탯 현황
     public TextMeshProUGUI HealthStatText;
     public Slider hp_Status_Bar;
@@ -53,15 +55,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI LEVEL;
 
     private float maxDamage = 30f;
-    private float SpeedOffset = 2f;
     private string targetTag = "Player"; // 찾고자 하는 태그
+    private int before_level = 1;
 
-    //어빌리티 상승을 보여주기 위한 임시 변수, 합체시 삭제 예정
-    private int level = 1;
-    private float sound = 3;
 
 
     //Select Ability의 설명문에 쓰일 문구
+    //HP, Power, AtkSpd, Spd 순서
     private string[] UpgradeIndex = {
         "The character's health increases by ",
         "The player's attack power increases by ",
@@ -73,9 +73,13 @@ public class UIManager : MonoBehaviour
 
     /*
      * Stat에서 사용할 이미지
-     * "HeroKnight_16", "HeroKnight_26", "HeroKnight_32", "HeroKnight_11"
+     * "HP Upgrade", "Power Upgrade", "Attack Speed Upgrade", "Speed Upgrade"
      */
     public Sprite[] HK_Img;
+    public Sprite[] king_Img;
+    public Sprite[] trd_Img;
+
+    public GameObject gameOverPanel;
 
     private GameObject player;
     private CharacterStats characterStats;
@@ -86,9 +90,14 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        statusPanel.SetActive(false);
+        LevelUpPanel.SetActive(false);
+    }
+    void Start()
+    {
         // Player 태그를 가진 게임 오브젝트 찾기
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(targetTag);
-        
+
         // 찾은 게임 오브젝트에 대한 처리
         foreach (GameObject obj in objectsWithTag)
         {
@@ -99,25 +108,27 @@ public class UIManager : MonoBehaviour
                 break;
             }
         }
+
         characterStats = player.GetComponent<CharacterStats>();
         characterManager = player.GetComponent<CharacterManager>();
         Status_Bar();
-        statusPanel.SetActive(false);
-        LevelUpPanel.SetActive(false);
-    }
-    void Start()
-    {
         //플레이어 이름으로 수정
         playerName.text = player.name;
         //플레이어 SpriteImage가져오기
         SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
         //Image에 PlayerSpriteImage 넣기
         playerImg.sprite = playerSprite.sprite;
+
+        if(SceneManager.GetActiveScene().name == "Stage2")
+        {
+            characterStats.curHealth = SceneManagerEX.Instance.health;
+        }
     }
     void FixedUpdate()
     {
-        countTime += Time.deltaTime;
-        time.text = ((int)countTime / 60 % 60).ToString() + ":"+ ((int)countTime % 60).ToString();
+        SceneManagerEX.Instance.totalTime +=Time.deltaTime;
+        time.text = ((int)SceneManagerEX.Instance.totalTime / 60 % 60).ToString() + ":"+ ((int)SceneManagerEX.Instance.totalTime % 60).ToString();
+        
     }
     void Update()
     {
@@ -127,6 +138,8 @@ public class UIManager : MonoBehaviour
         // 아래 둘은 일단 Update에 배치했지만 후에 체력과 스탯이 상호작용하는 곳에 연결해놓고 테스트
         //플레이어 체력 설정
         HealthBar();
+        //플레이어 경험치바 설정
+        ExpBar();
         //플레이어 스탯 설정
         Status_Bar();
     }
@@ -149,6 +162,11 @@ public class UIManager : MonoBehaviour
         //Debug.Log("PlayerHealthValue"+healthBar.value);
         //Debug.Log("PlayerHealth: " + characterStats.curHealth + "/" + characterStats.maxHealth);
         playerHPText.text = characterStats.curHealth.ToString() + "/" + characterStats.maxHealth.ToString();
+
+        if(characterStats.curHealth <= 0)
+        {
+            Invoke("ActiveGameOverPanel", 2f);
+        }
     }
 
     void ExpBar()
@@ -156,8 +174,18 @@ public class UIManager : MonoBehaviour
         //level: 플레이어 현재 레벨
         //exp: 플레이어 현재 경험치 찬 정도
         //추가사항 풀 받고 작업 진행
-        //expBar.value = (float)characterStats.exp / 100.0f;
-        //playerExpText.text = characterStats.level;
+        
+        LEVEL.text = SceneManagerEX.Instance.player_level.ToString();
+        expBar.value = (float)(SceneManagerEX.Instance.player_Exp%20) / 20.0f;
+        playerExpText.text = (SceneManagerEX.Instance.player_Exp % 20).ToString();
+        playerLevel.text = "Level: " + LEVEL.text +" "+((float)(SceneManagerEX.Instance.player_Exp) / (float)20.0f) * 100 + "%";
+        //PlayerLEvelUp!
+        if (SceneManagerEX.Instance.player_Exp >= 20)
+        {
+            SceneManagerEX.Instance.player_level++;
+            SceneManagerEX.Instance.player_Exp -= 20;
+            OnClickExpBtn();
+        }
     }
 
     void Status_Bar()
@@ -167,16 +195,16 @@ public class UIManager : MonoBehaviour
         power_Status_Bar.value = ((float)characterStats.damage.GetStat() / maxDamage);
         //speed_Status_Bar.value = ((float)(characterManager.m_speed) / (float)characterStats.maxSpeed);
         //speed_Status_Bar.value = (float)characterManager.GetSpeed() - SpeedOffset;
-        speed_Status_Bar.value = (float)sound / 7.0f;
+        speed_Status_Bar.value = characterManager.GetSpeed()/ 8.0f;
 
         HealthStatText.text = characterStats.maxHealth.ToString() + "/" + "300";
-        PowerStatText.text = characterStats.damage.GetStat().ToString() + "/" + maxDamage.ToString();
-        SpeedStatText.text = sound.ToString() + " /"+" 7.0";
+        PowerStatText.text = characterStats.damage.GetStat().ToString() + "/" + "30";
+        SpeedStatText.text = characterManager.GetSpeed().ToString() + " /"+"8.0";
     }
     
     void StatSelect()
     {
-        abilityTextTitle.text = "Level: "+level.ToString() + " Select Ability";
+        abilityTextTitle.text = "Level: "+((SceneManagerEX.Instance.player_Exp/20)+1).ToString() + " Select Ability";
         //2개의 선택된 index 반환
         selectedIndices = SelectNonZeroIndices(SceneManagerEX.Instance.max_Status);
 
@@ -184,34 +212,67 @@ public class UIManager : MonoBehaviour
         if(selectedIndices.Length >= 2)
         {
             LeftAbilityTitle.text = UpgradeTitle[selectedIndices[0]] + " " + (6 - SceneManagerEX.Instance.max_Status[selectedIndices[0]]).ToString();
-            LeftAbilityImg.sprite = HK_Img[selectedIndices[0]];
+            if(SceneManagerEX.Instance.selectChar.name  == "HeroKnight")
+            {
+                LeftAbilityImg.sprite = HK_Img[selectedIndices[0]];
+            }
+            else if(SceneManagerEX.Instance.selectChar.name == "Hero3rd")
+            {
+                LeftAbilityImg.sprite = trd_Img[selectedIndices[0]];
+            }
+            else if(SceneManagerEX.Instance.selectChar.name == "HeroKing")
+            {
+                LeftAbilityImg.sprite = king_Img[selectedIndices[0]];
+            }
             LeftAbilityExplanation.text = UpgradeIndex[selectedIndices[0]] + " " + (6 - SceneManagerEX.Instance.max_Status[selectedIndices[0]]).ToString();
 
             RightAbilityTitle.text = UpgradeTitle[selectedIndices[1]] + " " + (6 - SceneManagerEX.Instance.max_Status[selectedIndices[1]]).ToString();
-            RightAbilityImg.sprite = HK_Img[selectedIndices[1]];
+            if (SceneManagerEX.Instance.selectChar.name == "HeroKnight")
+            {
+                RightAbilityImg.sprite = HK_Img[selectedIndices[1]];
+            }
+            else if (SceneManagerEX.Instance.selectChar.name == "Hero3rd")
+            {
+                RightAbilityImg.sprite = trd_Img[selectedIndices[1]];
+            }
+            else if (SceneManagerEX.Instance.selectChar.name == "HeroKing")
+            {
+                RightAbilityImg.sprite = king_Img[selectedIndices[1]];
+            }
             RightAbilityExplanation.text = UpgradeIndex[selectedIndices[1]] + " " + (6 - SceneManagerEX.Instance.max_Status[selectedIndices[1]]).ToString();
         }
         else if(selectedIndices.Length == 1)
         {
             LeftAbilityTitle.text = UpgradeTitle[selectedIndices[0]] + " " + (6 - SceneManagerEX.Instance.max_Status[selectedIndices[0]]).ToString();
-            LeftAbilityImg.sprite = HK_Img[selectedIndices[0]];
+            if (SceneManagerEX.Instance.selectChar.name == "HeroKnight")
+            {
+                LeftAbilityImg.sprite = HK_Img[selectedIndices[0]];
+            }
+            else if (SceneManagerEX.Instance.selectChar.name == "Hero3rd")
+            {
+                LeftAbilityImg.sprite = trd_Img[selectedIndices[0]];
+            }
+            else if (SceneManagerEX.Instance.selectChar.name == "HeroKing")
+            {
+                LeftAbilityImg.sprite = king_Img[selectedIndices[0]];
+            }
             LeftAbilityExplanation.text = UpgradeIndex[selectedIndices[0]] + " " + (6 - SceneManagerEX.Instance.max_Status[selectedIndices[0]]).ToString();
 
             RightAbilityTitle.text = UpgradeTitle[selectedIndices[0]] + " " + (6 - SceneManagerEX.Instance.max_Status[selectedIndices[0]]).ToString();
-            RightAbilityImg.sprite = HK_Img[selectedIndices[0]];
+            if (SceneManagerEX.Instance.selectChar.name == "HeroKnight")
+            {
+                LeftAbilityImg.sprite = HK_Img[selectedIndices[0]];
+            }
+            else if (SceneManagerEX.Instance.selectChar.name == "Hero3rd")
+            {
+                LeftAbilityImg.sprite = trd_Img[selectedIndices[0]];
+            }
+            else if (SceneManagerEX.Instance.selectChar.name == "HeroKing")
+            {
+                LeftAbilityImg.sprite = king_Img[selectedIndices[0]];
+            }
             RightAbilityExplanation.text = UpgradeIndex[selectedIndices[0]] + " " + (6 - SceneManagerEX.Instance.max_Status[selectedIndices[0]]).ToString();
         }
-
-        /*
-        //선택된 친구의 값만 제거
-        Debug.Log("Selected Indices: " + string.Join(", ", selectedIndices));
-
-        foreach (int index in selectedIndices)
-        {
-            SceneManagerEX.Instance.max_Status[index]--;
-            Debug.Log($"Updated Array after decrement at index {index}: [{string.Join(", ", SceneManagerEX.Instance.max_Status)}]");
-        }
-        */
     }
     // HP, Power, Attack Speed, Speed
     public void OnCllickLeft()
@@ -221,6 +282,7 @@ public class UIManager : MonoBehaviour
         {
             case 0:
                 characterStats.maxHealth += 50;
+                characterStats.curHealth += 50;
                 break;
             case 1:
                 characterStats.damage.SetStat(characterStats.damage.GetStat()+5);
@@ -228,7 +290,7 @@ public class UIManager : MonoBehaviour
             case 2:
                 break;
             case 3:
-                sound++;
+                characterManager.SetSpeed(characterManager.GetSpeed()+1);
                 break;
         }
         Debug.Log($"Updated Array after decrement at index {0}: [{string.Join(", ", SceneManagerEX.Instance.max_Status)}]");
@@ -244,6 +306,7 @@ public class UIManager : MonoBehaviour
             {
                 case 0:
                     characterStats.maxHealth += 50;
+                    characterStats.curHealth += 50;
                     break;
                 case 1:
                     characterStats.damage.SetStat(characterStats.damage.GetStat() + 5);
@@ -251,7 +314,7 @@ public class UIManager : MonoBehaviour
                 case 2:
                     break;
                 case 3:
-                    sound++;
+                    characterManager.SetSpeed(characterManager.GetSpeed() + 1);
                     break;
             }
         }
@@ -263,6 +326,7 @@ public class UIManager : MonoBehaviour
             {
                 case 0:
                     characterStats.maxHealth += 50;
+                    characterStats.curHealth += 50;
                     break;
                 case 1:
                     characterStats.damage.SetStat(characterStats.damage.GetStat()+5);
@@ -270,7 +334,7 @@ public class UIManager : MonoBehaviour
                 case 2:
                     break;
                 case 3:
-                    sound++;
+                    characterManager.SetSpeed(characterManager.GetSpeed() + 1);
                     break;
             }
         }
@@ -316,10 +380,24 @@ public class UIManager : MonoBehaviour
     }
     public void OnClickExpBtn()
     {
-        level++;
-        LEVEL.text = level.ToString();
         Time.timeScale = 0;
         StatSelect();
         LevelUpPanel.SetActive(true);
+    }
+
+    public void OnClickRe()
+    {
+        SceneManagerEX.Instance.LoadMainMenu();
+    }
+
+    public void OnClickExit()
+    {
+        SceneManagerEX.Instance.ExitGame();
+    }
+
+    public void ActiveGameOverPanel()
+    {
+        Time.timeScale = 0;
+        gameOverPanel.SetActive(true);
     }
 }
