@@ -15,7 +15,7 @@ public class randomPattern : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         currentCooldown = 0;
-        player = GameObject.Find("HeroKnight").transform;
+        player = GameObject.Find(SceneManagerEX.Instance.selectChar.name.ToString() + "(Clone)").transform;
         rb = animator.GetComponent<Rigidbody2D>();
         boss = animator.GetComponent<stage1boss>();
     }

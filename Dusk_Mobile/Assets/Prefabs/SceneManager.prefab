@@ -47,10 +47,14 @@ MonoBehaviour:
   beforeSceneName: 
   selectChar: {fileID: 0}
   CharacterPrefab:
-  - {fileID: 6228054251482562161, guid: afffdb9585930f8439ea108f990d6d47, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  HK_Start_Stat: 03000000030000000000000000000000
-  King_Start_Stat: 02000000020000000100000001000000
-  Women_Start_Stat: 00000000010000000100000004000000
+  - {fileID: 3724904327652694096, guid: 53ffa103b6a249e4a9037bece39970a3, type: 3}
+  - {fileID: 2606414691424199900, guid: bd911ed7435f2e3419e713c9f3c29a0f, type: 3}
+  - {fileID: 367893576164495571, guid: a14e2e13ced666443a09feb4da9459e2, type: 3}
+  totalTime: 0
+  HK_Start_Stat: 02000000020000000100000001000000
+  King_Start_Stat: 01000000010000000100000003000000
+  Women_Start_Stat: 01000000030000000100000001000000
   max_Status: 05000000050000000500000005000000
+  health: 0
+  player_level: 0
+  player_Exp: 0

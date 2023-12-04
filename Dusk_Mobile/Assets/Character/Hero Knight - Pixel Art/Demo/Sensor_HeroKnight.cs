@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Sensor_HeroKnight : MonoBehaviour {
 
-    private int m_ColCount = 0;
+    public int m_ColCount = 0;
 
     private float m_DisableTimer;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         m_ColCount = 0;
     }
@@ -31,11 +31,17 @@ public class Sensor_HeroKnight : MonoBehaviour {
 
     void Update()
     {
+        
         m_DisableTimer -= Time.deltaTime;
     }
 
     public void Disable(float duration)
     {
         m_DisableTimer = duration;
+    }
+
+    public void SetColCount()
+    {
+        m_ColCount = 0;
     }
 }

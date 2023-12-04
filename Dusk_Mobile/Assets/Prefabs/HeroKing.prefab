@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 367893576164495571}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.45, y: -3.84, z: 0}
+  m_LocalPosition: {x: -8, y: -4, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 4723107735738678597, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -144,7 +144,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7100018187287942339
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202,11 +202,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec58c789e9ee674392d45c9d8f1088b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 4
+  m_speed: 6
   m_jumpForce: 7.5
   m_rollForce: 6
   m_noBlood: 0
   m_slideDust: {fileID: 1038168246061390451, guid: 8b8c8cc6774fb074cb9139cc631b108e, type: 3}
+  playerCollider: {fileID: 0}
   atkCdw: 0
   blocking: 0
   pos: {fileID: 3174515430047652993}
@@ -237,7 +238,7 @@ MonoBehaviour:
   damage:
     baseStat: 10
   atkSpd:
-    baseStat: 0
+    baseStat: 1
 --- !u!251 &1296830030106382987
 PlatformEffector2D:
   m_ObjectHideFlags: 0

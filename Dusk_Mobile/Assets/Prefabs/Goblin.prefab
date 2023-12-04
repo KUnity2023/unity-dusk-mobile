@@ -168,7 +168,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 7
 --- !u!61 &8112564909931506221
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -227,8 +227,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  curHealth: 0
   damage:
-    baseStat: 5
+    baseStat: 3
   atkSpd:
     baseStat: 0
 --- !u!114 &4867856728430204665
@@ -251,4 +252,4 @@ MonoBehaviour:
   boxSize: {x: 2.6, y: 1}
   attackMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8

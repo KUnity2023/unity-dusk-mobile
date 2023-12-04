@@ -64,10 +64,9 @@ public class CharacterManager : MonoBehaviour {
         UIBtnManager ui = GameObject.Find("ButtonUI").GetComponent<UIBtnManager>();
         js = GameObject.Find("Joystick").GetComponent<bl_Joystick>();
         ui.Init();
-        Physics2D.IgnoreLayerCollision(3,8,true); //3: player, 8: enemy
+        Physics2D.IgnoreLayerCollision(3, 8, true); //3: player, 8: enemy
 
     }
-
     // Update is called once per frame
     void Update ()
     {
@@ -127,6 +126,7 @@ public class CharacterManager : MonoBehaviour {
 
         // -- Handle Animations --
         //Wall Slide
+        Debug.Log("WallSTate: " + m_wallSensorR1.State().ToString() +  m_wallSensorR2.State().ToString()+m_wallSensorL1.State().ToString()+m_wallSensorL2.State().ToString());
         m_isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
         m_animator.SetBool("WallSlide", m_isWallSliding);
 
@@ -300,5 +300,14 @@ public class CharacterManager : MonoBehaviour {
             // Turn arrow in correct direction
             dust.transform.localScale = new Vector3(m_facingDirection, 1, 1);
         }
+    }
+
+    public float GetSpeed()
+    {
+        return m_speed;
+    }
+    public void SetSpeed(float speed)
+    {
+        m_speed = speed;
     }
 }
